@@ -316,7 +316,10 @@ const WEEK_CN = ['星期日','星期一','星期二','星期三','星期四','�
 
 /* ============================================================
    3. 学校校历数据（2026 官方 + 2027 部分）
-   b = breaks: [start, end, label, teaching?]  teaching=1 表示该周仍计入教学周
+   b = breaks: [start, end, label, numbered?]
+   numbered=1 表示该周官方仍编入周次（UNSW 的 flexi week 官方仍称 Week 6）；
+   无论是否编号，休息周一律不计入教学周。
+   官方口径：UNSW 每学期 10 周中只有 9 周为教学周（W1-5、W7-10），第 6 周 flexi week 无课。
    ============================================================ */
 const BUILTIN = [
 {
@@ -582,15 +585,15 @@ const BUILTIN = [
   src:'https://www.uwa.edu.au/students/your-studies/important-dates',
   periods:[
     {name:'Semester 1', oStart:'2026-02-16', oEnd:'2026-02-20', start:'2026-02-23', teachEnd:'2026-05-22',
-     breaks:[['2026-04-06','2026-04-10','Study break',0]],
+     breaks:[['2026-04-06','2026-04-10','Mid-semester break',0]],
      studyStart:'2026-05-25', studyEnd:'2026-05-29', examStart:'2026-05-30', examEnd:'2026-06-13',
      extras:[['退课截止日','04.10','2026-04-10'],['成绩公布','07.03','2026-07-03']]},
     {name:'Semester 2', oStart:'2026-07-13', oEnd:'2026-07-17', start:'2026-07-20', teachEnd:'2026-10-16',
-     breaks:[['2026-08-31','2026-09-04','Study break',0]],
+     breaks:[['2026-08-31','2026-09-04','Mid-semester break',0]],
      studyStart:'2026-10-19', studyEnd:'2026-10-23', examStart:'2026-10-24', examEnd:'2026-11-07',
      extras:[['退课截止日','09.04（academic withdrawal）','2026-09-04'],['成绩公布','12.01','2026-12-01']]},
     {name:'Semester 1', start:'2027-02-22', teachEnd:'2027-05-21',
-     breaks:[['2027-03-29','2027-04-02','Study break',0]],
+     breaks:[['2027-03-29','2027-04-02','Mid-semester break',0]],
      studyStart:'2027-05-24', studyEnd:'2027-05-28', examStart:'2027-05-29', examEnd:'2027-06-12', provisional:true}
   ]
 },
@@ -772,9 +775,23 @@ const BUILTIN = [
    4. 教学周计算引擎
    ============================================================ */
 function normBreaks(p){
+  // 第 4 个字段 = 官方是否把这一周也编入周次（如 UNSW 的 flexi week 官方仍称 Week 6）：
+  // 无论是否编号，它都是「休息周」，一律不计入教学周。
   return (p.breaks||[]).map(b=>({
-    s:D(b[0]), e:D(b[1]), label:b[2]||'假期', teaching: !!b[3]
+    s:D(b[0]), e:D(b[1]), label:b[2]||'假期', numbered: !!b[3]
   }));
+}
+/* 假期名称中文化 */
+function brLabel(label){
+  const map = {
+    'Flexibility Week':'灵活周（无课）',
+    'Mid-semester break':'期中假期','In-semester break':'期中假期','Mid-session break':'期中假期',
+    'Mid-session recess':'期中假期','Mid-session StuVac':'期中假期','Semester recess':'期中假期',
+    'Non-teaching period':'非教学周','Student vacation':'学生假期','Intra-trimester break':'学期内假期',
+    'Tuition-free week':'免课周','Study break':'无课周','Study vacation':'无课周',
+    'Lecture recess':'停课周','Class free week':'无课周'
+  };
+  return map[label] || label;
 }
 function breakOnWeek(br, mon, sun){
   let cnt=0;
@@ -787,18 +804,30 @@ function breakOnWeek(br, mon, sun){
 function buildWeeks(p){
   const brs = normBreaks(p);
   const last = p.teachEnd ? D(p.teachEnd) : null;
-  const out=[]; let m = mondayOf(D(p.start)); let i=0; let guard=0;
+  const out=[]; let m = mondayOf(D(p.start)); let i=0; let pos=0; let guard=0;
   while(guard++ < 80){
     const sun = addDays(m,6);
     if(last && m>last) break;
+    pos++;                                       // 教学期内第几周（含休息周）
     const hit = brs.find(b=>breakOnWeek(b,m,sun));
-    if(hit && hit.teaching){ i++; out.push({index:i, mon:m, sun, label:hit.label}); }
-    else if(hit){ out.push({index:null, mon:m, sun, isBreak:true, label:hit.label}); }
-    else { i++; out.push({index:i, mon:m, sun}); }
+    if(hit){                                     // 休息周：不计入教学周
+      out.push({index:null, pos, mon:m, sun, isBreak:true, label:hit.label});
+    } else {
+      i++; out.push({index:i, pos, mon:m, sun});  // index = 第几教学周（休息周不占号）
+    }
     m = addDays(m,7);
   }
   return out;
 }
+/* 该学期官方是否把休息周也编入周次（UNSW flexi week 官方仍叫 Week 6） */
+function numberedRest(p){ return normBreaks(p).some(b=>b.numbered); }
+/* 教学周在教学期内显示的周次：按各校官方习惯 */
+function weekNo(p, w){
+  if(!w || w.isBreak) return null;
+  return numberedRest(p) ? w.pos : w.index;
+}
+/* 实际教学周总数（休息周不计入） */
+function teachTotal(p){ return buildWeeks(p).filter(w=>!w.isBreak).length; }
 function evaluate(school, today){
   const ps = school.periods.slice().sort((a,b)=>a.start.localeCompare(b.start));
   for(const p of ps){
@@ -932,11 +961,17 @@ function summaryTable(s, p, today){
   const push=(g,w,d,rs,re,cls)=>rows.push({g,w,d,cls:cls||'',cur: !!rs && today>=rs && today<=re});
   if(p.oStart) push('迎新周','W0',`${fmtDot(p.oStart)}~${fmtDot(p.oEnd||p.start)}`, p.oStart, p.oEnd||p.start,'r-ori');
   let wn=0;
+  const nrest = numberedRest(p);
   for(const w of buildWeeks(p)){
-    wn++;
     const d = `${fmtDot(iso(w.mon))}~${fmtDot(iso(addDays(w.mon,4)))}`;
-    if(w.isBreak || w.label) push('教学周',`W${wn}(休息)`, d, iso(w.mon), iso(w.sun),'r-break');
-    else push('教学周',`W${wn}`, d, iso(w.mon), iso(w.sun),'');
+    if(w.isBreak){
+      // 休息周：不计入教学周 —— 单独成组、不占教学周编号，只显示假期名称
+      push('休息周', brLabel(w.label), d, iso(w.mon), iso(w.sun),'r-break');
+      if(nrest) wn = w.pos;          // 官方仍把该周编入周次时（UNSW），后续周次顺延
+    } else {
+      wn = nrest ? w.pos : w.index;  // index = 实际第几教学周（休息周不占号）
+      push('教学周',`W${wn}`, d, iso(w.mon), iso(w.sun),'');
+    }
   }
   if(p.studyStart){ wn++; push('复习周',`W${wn}`,`${fmtDot(p.studyStart)}-${fmtDot(p.studyEnd||p.studyStart)}`, p.studyStart, p.studyEnd||p.studyStart,'r-study'); }
   if(p.examStart){ wn++; push('考试周',`W${wn}`,`${fmtDot(p.examStart)}-${fmtDot(p.examEnd||p.examStart)}`, p.examStart, p.examEnd||p.examStart,'r-exam'); }
@@ -998,16 +1033,18 @@ function renderSchools(){
 
     let main = '', note = '', pct = 0, metaA = '', metaB = '';
     if(r.kind==='teaching'){
-      const weeks = r.weeks.filter(w=>!w.isBreak);
-      const total = weeks.length;
-      const n = r.w.index;
-      pct = Math.round(n/total*100);
+      const total = r.weeks.filter(w=>!w.isBreak).length;   // 休息周不计入教学周
+      const seq = r.w.index;                                // 实际第几教学周
+      const n = weekNo(r.p, r.w);                           // 按各校官方习惯显示的周次
+      pct = Math.round(seq/total*100);
       main = `<div class="sc-week">Week ${n}</div><div class="sc-of">/ ${total} 周</div>`;
-      const leftWeeks = total - n;
+      const leftWeeks = total - seq;
       const daysToEnd = diffDays(today, r.p.teachEnd);
       metaA = `<div>本周 <span>${fmtMDshort(iso(r.w.mon))} – ${fmtMDshort(iso(r.w.sun))}</span></div>`;
       metaB = `<div>教学结束 <span>${fmtMD(r.p.teachEnd)}</span></div>`;
-      const bits = [`剩余 ${leftWeeks} 周教学（含本周），距教学结束 ${daysToEnd} 天`];
+      const bits = [];
+      if(n !== seq) bits.push(`休息周不计入教学周，本周为实际第 ${seq} / ${total} 教学周`);
+      bits.push(`剩余 ${leftWeeks} 周教学（含本周），距教学结束 ${daysToEnd} 天`);
       if(r.p.examStart && r.p.examStart > r.p.teachEnd) bits.push(`考试 ${fmtMD(r.p.examStart)} 起`);
       note = `<div class="sc-note">${bits.join(' · ')}</div>`;
     } else if(r.kind==='break'){
@@ -1015,10 +1052,10 @@ function renderSchools(){
       const total = (r.weeks||buildWeeks(r.p)).filter(w=>!w.isBreak).length;
       const done = (r.weeks||buildWeeks(r.p)).filter(w=>!w.isBreak && iso(w.sun) < iso(r.w.mon)).length;
       pct = total?Math.round(done/total*100):0;
-      main = `<div class="sc-week" style="font-size:24px;padding-bottom:4px">${r.w.label}</div>`;
+      main = `<div class="sc-week" style="font-size:24px;padding-bottom:4px">${brLabel(r.w.label)}</div>`;
       metaA = `<div>区间 <span>${fmtMDshort(iso(r.w.mon))} – ${fmtMDshort(iso(r.w.sun))}</span></div>`;
       metaB = resume ? `<div>复课 <span>${fmtMD(resume)}</span></div>` : `<div>教学结束 <span>${fmtMD(r.p.teachEnd)}</span></div>`;
-      note = `<div class="sc-note">已完成 ${done} / ${total} 周教学 · 假期剩余 ${diffDays(today, iso(r.w.sun))+1} 天</div>`;
+      note = `<div class="sc-note">休息周不计入教学周 · 已完成 ${done} / ${total} 周教学 · 假期剩余 ${diffDays(today, iso(r.w.sun))+1} 天</div>`;
     } else if(r.kind==='study'){
       main = `<div class="sc-week" style="font-size:24px;padding-bottom:4px">复习周</div>`;
       metaA = `<div>区间 <span>${fmtMDshort(r.p.studyStart)} – ${fmtMDshort(r.p.studyEnd)}</span></div>`;
