@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="zh-CN" data-page-node-id="2J8h3zHn7oBXhknuRLpWAW">
-<head data-page-node-id="j6iRtXaUZFJk3hiEEm9DsU">
-<meta charset="utf-8" data-page-node-id="pxWvF8yJuu3YC59rexC6JC">
-<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="yHNRmLtSj6DjDC3ja0PqWm">
-<title>澳洲高校教学周日历 · Teaching Week Tracker</title>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>稿多多校历查询</title>
 <style>
+
 :root{
   --bg:#f4f6f9;
   --card:#ffffff;
@@ -102,7 +103,7 @@ body{
 .sc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
 .sc-code{font-size:22.5px;font-weight:680;letter-spacing:.3px;line-height:1.15}
 .sc-zh{font-size:18px;color:var(--muted);margin-top:2px}
-.sc-city{font-size:11px;color:var(--faint);margin-top:4px}
+.sc-city{font-size:11.5px;color:var(--faint);margin-top:4px;letter-spacing:.2px}
 .pill{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap}
 .p-teaching{background:var(--green-soft);color:var(--green)}
 .p-break{background:var(--amber-soft);color:var(--amber)}
@@ -110,17 +111,17 @@ body{
 .p-study{background:var(--violet-soft);color:var(--violet)}
 .p-rest{background:var(--slate-soft);color:var(--slate)}
 
-.sc-main{display:flex;align-items:flex-end;gap:10px;margin:14px 0 2px}
-.sc-week{font-size:38px;font-weight:700;line-height:1;letter-spacing:.5px;font-variant-numeric:tabular-nums}
-.sc-week small{font-size:15px;font-weight:700;color:var(--muted);margin-left:4px}
-.sc-of{font-size:13px;font-weight:600;color:var(--faint);padding-bottom:5px}
+.sc-main{display:flex;align-items:flex-end;gap:9px;margin:12px 0 2px}
+.sc-week{font-size:28px;font-weight:700;line-height:1;letter-spacing:.4px;font-variant-numeric:tabular-nums}
+.sc-week small{font-size:12.5px;font-weight:700;color:var(--muted);margin-left:4px}
+.sc-of{font-size:11.5px;font-weight:600;color:var(--faint);padding-bottom:4px}
 .sc-tz{
-  margin-left:auto;align-self:flex-end;margin-bottom:5px;white-space:nowrap;
-  font-size:12px;font-weight:640;color:var(--slate);background:var(--line-soft);border:1px solid var(--line);
-  border-radius:999px;padding:3px 10px;
+  margin-left:auto;align-self:flex-end;margin-bottom:4px;white-space:nowrap;
+  font-size:11px;font-weight:640;color:var(--slate);background:var(--line-soft);border:1px solid var(--line);
+  border-radius:999px;padding:3px 9px;
 }
 .sc-tz b{font-weight:700;color:var(--accent)}
-.sc-term{font-size:12px;color:var(--muted);margin-top:2px}
+.sc-term{font-size:11.5px;color:var(--muted);margin-top:2px}
 .sc-note{font-size:12px;margin-top:8px;padding:6px 9px;border-radius:8px;background:var(--line-soft);color:var(--slate);line-height:1.5}
 
 .bar{height:5px;border-radius:99px;background:var(--line-soft);overflow:hidden;margin-top:13px}
@@ -180,82 +181,127 @@ footer a:hover{color:var(--accent)}
   .sc-code{font-size:19px}
   .sc-zh{font-size:15px}
 }
+
+
+/* ---------- 第 1 层：入口页 ---------- */
+body.on-home{display:flex;flex-direction:column;justify-content:center;min-height:100vh;background:
+  radial-gradient(1200px 520px at 50% -10%, #eaf1ff 0%, rgba(234,241,255,0) 62%), var(--bg)}
+.home{width:100%;max-width:940px;margin:0 auto;padding:46px 24px 52px;text-align:center}
+.home-badge{
+  display:inline-block;font-size:11.5px;font-weight:640;letter-spacing:1.4px;color:var(--accent);
+  background:var(--accent-soft);border:1px solid #d8e5ff;border-radius:999px;padding:4px 14px;
+}
+.home-title{margin:20px 0 0;font-size:44px;font-weight:700;letter-spacing:3px;line-height:1.2}
+.home-sub{margin:14px 0 0;font-size:13.5px;color:var(--muted);line-height:1.8}
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:42px;text-align:left}
+.home-card{
+  position:relative;overflow:hidden;font:inherit;text-align:left;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px 22px;
+  box-shadow:0 1px 2px rgba(16,24,40,.04);transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+.home-card::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:var(--c)}
+.home-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(16,24,40,.10);border-color:#ccd4e0}
+.home-card:active{transform:translateY(-1px)}
+.home-card:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.hc-flag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.6px;color:#fff;background:var(--c);border-radius:999px;padding:3px 11px}
+.hc-title{margin:15px 0 0;font-size:23px;font-weight:700;letter-spacing:.4px;color:var(--text)}
+.hc-desc{margin:9px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7}
+.hc-meta{margin-top:15px;padding-top:12px;border-top:1px dashed var(--line);display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:var(--faint)}
+.hc-go{color:var(--c);font-weight:700}
+.home-foot{margin-top:38px;font-size:11.5px;color:var(--faint);line-height:1.9}
+
+/* ---------- 第 2 层：返回入口 ---------- */
+.back{
+  font:inherit;font-size:12.5px;font-weight:600;color:var(--muted);background:#fff;cursor:pointer;
+  border:1px solid var(--line);border-radius:999px;padding:6px 15px;margin-bottom:14px;
+}
+.back:hover{color:var(--accent);border-color:#cbd2dc}
+#footNotes p{margin:0 0 6px}
+#footNotes p:last-child{margin-bottom:0}
+
+@media (max-width:760px){
+  .home{padding:34px 18px 44px}
+  .home-title{font-size:31px;letter-spacing:1px}
+  .home-grid{grid-template-columns:1fr;gap:16px;margin-top:30px}
+  .hc-title{font-size:20px}
+}
 </style>
 </head>
-<body data-page-node-id="ggP0FZAqGoGBYpO1wMZXgH">
-<div class="wrap" data-page-node-id="8aSGsEDGHgwjXLvKiXBLwc">
+<body class="on-home">
 
-  <div class="top" data-page-node-id="LbdCxTvVxHyaiSvv8NpzW3">
-    <div data-page-node-id="JSUrzYN8QWDvs7v9LCLxw0">
-      <h1 data-page-node-id="0hICgBHXfvaWgnBFAgEeF3">澳洲高校教学周日历</h1>
-      <p class="sub" data-page-node-id="d4hCO8FmLtvnfy0wRbWr0D">北京时间 · 各校当前教学周实时计算（含与北京时差、退课截止、出分日）</p>
+<!-- ============ 第 1 层：入口页 ============ -->
+<section class="home" id="viewHome">
+  <span class="home-badge">稿多多 · 留学日历</span>
+  <h1 class="home-title">稿多多校历查询</h1>
+  <p class="home-sub">选择地区进入 &nbsp;·&nbsp; 实时显示各校当前教学周、与北京时差、退课截止与出分日</p>
+  <div class="home-grid">
+    <button class="home-card" type="button" data-site="au" style="--c:#0f62fe">
+      <span class="hc-flag">AU</span>
+      <div class="hc-title">澳洲高校校历查询</div>
+      <div class="hc-desc">24 所高校 · 悉尼 / 墨尔本 / 布里斯班 / 阿德莱德 / 珀斯<br>三学期（Term）与两学期（Semester）制并行</div>
+      <div class="hc-meta"><span>2026 学年</span><span class="hc-go">进入 →</span></div>
+    </button>
+    <button class="home-card" type="button" data-site="uk" style="--c:#6d28d9">
+      <span class="hc-flag">UK</span>
+      <div class="hc-title">英国高校校历查询</div>
+      <div class="hc-desc">20 所高校 · 伦敦 / 曼彻斯特 / 爱丁堡 / 格拉斯哥 / 剑桥<br>学期制、三学期制与 Teaching Block 制并行</div>
+      <div class="hc-meta"><span>2026 / 27 学年</span><span class="hc-go">进入 →</span></div>
+    </button>
+  </div>
+  <div class="home-foot">数据来源：各校官网官方校历 · 单文件离线可用 · 休息周（假期 / 阅读周）不计入教学周</div>
+</section>
+
+<!-- ============ 第 2 层：校历页 ============ -->
+<div class="wrap" id="viewCal" hidden>
+
+  <div class="top">
+    <div>
+      <button class="back" type="button" id="btnBack">← 返回入口</button>
+      <h1 id="calTitle">—</h1>
+      <p class="sub">北京时间 · 各校当前教学周实时计算（含与北京时差、退课截止、出分日）</p>
     </div>
-    <div class="stamp" data-page-node-id="JvvEwrUZxc5HfFicZyZKH7">
-      数据源：各校官网 2026 官方校历<br data-page-node-id="LWdVPUNjdpVnw7CtYgaAIl">
-      <b id="stampNow" data-page-node-id="pmNUUgxBE735dezjgLirN3">—</b>
+    <div class="stamp">
+      <span id="calStamp">—</span><br>
+      <b id="stampNow">—</b>
     </div>
   </div>
 
   <!-- ROW 1 -->
-  <div class="sec" data-page-node-id="84iqyWxEug1BVL0OYfYPBE">
-    <div class="sec-h" data-page-node-id="L0NDxk5DFIMNTFr8cs5M0a"><h2 data-page-node-id="tCCcRzRUSC0j56Mo9etFdF">北京时间</h2><span class="line" data-page-node-id="ClktJWAltdbeJgB3RS8aSo"></span></div>
-    <div class="beijing" data-page-node-id="WpEjifKq7XdRUOan7umM6X">
-      <div class="bj-left" data-page-node-id="TaAcA7kYsIBgDAtGoDGFUc">
-        <div class="bj-time" id="bjTime" data-page-node-id="Od5tGZU6AQHWkCDrVcVZnf">--:--:--</div>
-        <div class="bj-date" data-page-node-id="XI2OeSazO6N2YRhYsYJC9v">
-          <div class="d" id="bjDate" data-page-node-id="7dFHACchDFa0BPnnBTlCPu">—</div>
+  <div class="sec">
+    <div class="sec-h"><h2>北京时间</h2><span class="line"></span></div>
+    <div class="beijing">
+      <div class="bj-left">
+        <div class="bj-time" id="bjTime">--:--:--</div>
+        <div class="bj-date">
+          <div class="d" id="bjDate">—</div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- SEARCH -->
-  <div class="sec" data-page-node-id="srchSecA1">
-    <div class="sec-h" data-page-node-id="srchSecH1"><h2 data-page-node-id="srchSecH2">搜索学校</h2><span class="tag" id="sbTag" data-page-node-id="srchSecH3">输入简称 / 中文名 / 城市</span><span class="line" data-page-node-id="srchSecH4"></span></div>
-    <div class="searchbar" data-page-node-id="srchBar1">
-      <div class="sb-field" data-page-node-id="srchBar2">
-        <input id="qSchool" autocomplete="off" placeholder="如：UNSW、悉尼、莫纳什、QUT…　回车确认" data-page-node-id="srchBar3">
-        <div class="sb-drop" id="sbDrop" hidden data-page-node-id="srchBar4"></div>
+  <div class="sec">
+    <div class="sec-h"><h2>搜索学校</h2><span class="tag" id="sbTag">输入简称 / 中文名 / 城市 / 国家</span><span class="line"></span></div>
+    <div class="searchbar">
+      <div class="sb-field">
+        <input id="qSchool" autocomplete="off" placeholder="">
+        <div class="sb-drop" id="sbDrop" hidden></div>
       </div>
-      <button class="btn" id="btnSearch" data-page-node-id="srchBar5">显示该校校历</button>
-      <button class="btn ghost" id="btnClearSearch" data-page-node-id="srchBar6">显示全部</button>
+      <button class="btn" id="btnSearch">显示该校校历</button>
+      <button class="btn ghost" id="btnClearSearch">显示全部</button>
     </div>
-    <div class="sb-msg" id="sbMsg" data-page-node-id="srchBar7">确认后，下方「当前教学周」只单独显示该学校的校历信息。</div>
+    <div class="sb-msg" id="sbMsg">确认后，下方「当前教学周」只单独显示该学校的校历信息。</div>
   </div>
 
   <!-- SCHOOLS -->
-  <div class="sec" data-page-node-id="LRcXmHxIdg3UdNQVE5XBBy">
-    <div class="sec-h" data-page-node-id="YgODVaLFnVAGsd04XkDmet"><h2 data-page-node-id="63aVt17z9zAT6p0Rtzv3j2">当前教学周</h2><span class="tag" id="schTag" data-page-node-id="m66oQA9dFI6nhkDFEHqKIb">—</span><span class="line" data-page-node-id="PkCLdZfDAR0hpyWnhnZAEx"></span></div>
-    <div class="schools" id="schools" data-page-node-id="TJHOEx8piEyt51FjGgup4j"></div>
+  <div class="sec">
+    <div class="sec-h"><h2>当前教学周</h2><span class="tag" id="schTag">—</span><span class="line"></span></div>
+    <div class="schools" id="schools"></div>
   </div>
 
-  <footer data-page-node-id="Jsa5GBBGcGaQ4xPg3fdqHs">
-    教学周依据各校<b data-page-node-id="3XWI4PrFnnABOZ8KGFgr0X">官方校历</b>的「教学起始日 + 期中/学期内假期 + 教学结束日 + 复习周 + 考试周」计算；带「参考」标记的学期表示官网尚未公布完整日期，起止为按官方已公布开学日推算，请以官网为准。<br data-page-node-id="xfFjpYw7fm3FboLsrdGjCS">
-    官方校历：
-    <a href="https://student.unsw.edu.au/calendar" target="_blank" rel="noopener" data-page-node-id="pocRhNo00EsBieG5C8Yxcf">UNSW</a> ·
-    <a href="https://www.sydney.edu.au/students/key-dates.html" target="_blank" rel="noopener" data-page-node-id="6Lmn6OhuQqM20FCWQjdGRr">USYD</a> ·
-    <a href="https://about.uq.edu.au/academic-calendar" target="_blank" rel="noopener" data-page-node-id="NjGfX4EM2eQdtAEkpmDfRF">UQ</a> ·
-    <a href="https://www.handbook.uts.edu.au/dates_academic.html" target="_blank" rel="noopener" data-page-node-id="RUd2qQawtjVkih9RRQUktF">UTS</a> ·
-    <a href="https://students.unimelb.edu.au/your-course/manage-your-course/key-dates" target="_blank" rel="noopener" data-page-node-id="Tx8KB5CnToXcIQdvy7Gxhs">UoM</a> ·
-    <a href="https://www.monash.edu/students/admin/dates/summary-dates" target="_blank" rel="noopener" data-page-node-id="yeeRkAvf94HwN5ZHyFnYF5">Monash</a> ·
-    <a href="https://www.deakin.edu.au/study/key-dates" target="_blank" rel="noopener" data-page-node-id="z69oab5xLLZQGcMZpA6QHB">Deakin</a> ·
-    <a href="https://www.rmit.edu.au/students/my-course/important-dates/2026/he" target="_blank" rel="noopener" data-page-node-id="8uLD0SnfGY8nEqIDZ6OIzd">RMIT</a> ·
-    <a href="https://www.adelaide.edu.au/student/dates/academic" target="_blank" rel="noopener" data-page-node-id="kbXtPRDbn4KL3uGaKGEORn">UoA</a> ·
-    <a href="https://www2.griffith.edu.au/academic-calendar-key-dates" target="_blank" rel="noopener">GU</a> ·
-    <a href="https://www.curtin.edu.au/students/essentials/academic-calendar/" target="_blank" rel="noopener">Curtin</a> ·
-    <a href="https://cms.qut.edu.au/__data/assets/pdf_file/0007/1443445/2026-academic-calendar-1.pdf" target="_blank" rel="noopener">QUT</a> ·
-    <a href="https://students.mq.edu.au/study/plan-my-study/key-dates" target="_blank" rel="noopener">MQ</a> ·
-    <a href="https://www.uwa.edu.au/students/your-studies/important-dates" target="_blank" rel="noopener">UWA</a> ·
-    <a href="https://www.latrobe.edu.au/calendar/academic-calendar" target="_blank" rel="noopener">La Trobe</a> ·
-    <a href="https://bond.edu.au/node/4288" target="_blank" rel="noopener">Bond</a> ·
-    <a href="https://www.jcu.edu.au/jcunow/key-dates" target="_blank" rel="noopener">JCU</a> ·
-    <a href="https://cqu.edu.au/study/future-students/your-journey/enrol/academic-calendars" target="_blank" rel="noopener">CQU</a> ·
-    <a href="https://www.westernsydney.edu.au/students/dates" target="_blank" rel="noopener">WSU</a> ·
-    <a href="https://www.uow.edu.au/student/dates/" target="_blank" rel="noopener">UOW</a> ·
-    <a href="https://www.newcastle.edu.au/current-students/study-essentials/enrolment/enrolment-dates" target="_blank" rel="noopener">UON</a> ·
-    <a href="https://www.scu.edu.au/current-students/student-administration/key-dates--teaching-calendar/" target="_blank" rel="noopener">SCU</a> ·
-    <a href="https://www.canberra.edu.au/future-students/key-dates" target="_blank" rel="noopener">UC</a> ·
-    <a href="https://www.utas.edu.au/key-dates/2026-study-periods" target="_blank" rel="noopener">UTAS</a>
+  <footer>
+    <div id="footNotes"></div>
+    官方校历：<span id="footLinks"></span>
   </footer>
 </div>
 
@@ -284,6 +330,7 @@ function tzOffsetMinutes(tz, when){
   const asUTC = Date.UTC(+g('year'), +g('month')-1, +g('day'), +g('hour'), +g('minute'), +g('second'));
   return Math.round((asUTC - Math.floor(when.getTime()/1000)*1000)/60000);
 }
+/* 澳洲 + 英国全部时区缩写 */
 const TZABBR = {
   'Australia/Sydney':{600:'AEST',660:'AEDT'},
   'Australia/Melbourne':{600:'AEST',660:'AEDT'},
@@ -293,6 +340,7 @@ const TZABBR = {
   'Australia/Adelaide':{570:'ACST',630:'ACDT'},
   'Australia/Darwin':{570:'ACST'},
   'Australia/Perth':{480:'AWST',540:'AWDT'},
+  'Europe/London':{0:'GMT',60:'BST'},
   'Asia/Shanghai':{480:'CST'}
 };
 function tzAbbr(tz, when){
@@ -310,18 +358,14 @@ function fmtOff(mins){
 }
 
 /* ============================================================
-   2. 城市
+   2. 星期名
    ============================================================ */
 const WEEK_CN = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
 
 /* ============================================================
-   3. 学校校历数据（2026 官方 + 2027 部分）
-   b = breaks: [start, end, label, numbered?]
-   numbered=1 表示该周官方仍编入周次（UNSW 的 flexi week 官方仍称 Week 6）；
-   无论是否编号，休息周一律不计入教学周。
-   官方口径：UNSW 每学期 10 周中只有 9 周为教学周（W1-5、W7-10），第 6 周 flexi week 无课。
+   3. 学校校历数据
    ============================================================ */
-const BUILTIN = [
+const AU_SCHOOLS = [
 {
   code:'UNSW', zh:'新南威尔士大学', tz:'Australia/Sydney', city:'悉尼', color:'#002b5c',
   src:'https://student.unsw.edu.au/calendar',
@@ -771,23 +815,359 @@ const BUILTIN = [
 }
 ];
 
+const UK_SCHOOLS = [
+{
+  code:'UCL', zh:'伦敦大学学院', alias:['ucl','伦敦大学学院'], tz:'Europe/London', city:'伦敦', color:'#500778',
+  src:'https://www.ucl.ac.uk/students/exams-and-assessments/key-dates',
+  periods:[
+    {name:'Term 1', start:'2026-09-28', teachEnd:'2026-12-18',
+     breaks:[['2026-11-09','2026-11-13','Reading Week']],
+     extras:[['退课截止日','待官网公布'],['成绩公布','Term 1 成绩约 2027.03（参考）']]},
+    {name:'Term 2', start:'2027-01-11', teachEnd:'2027-03-24',
+     breaks:[['2027-02-15','2027-02-19','Reading Week']],
+     extras:[['退课截止日','待官网公布'],['成绩公布','Term 3 成绩约 2027.07（参考）']]},
+    {name:'Term 3', start:'2027-04-26', teachEnd:'2027-05-07',
+     studyStart:'2027-05-10', studyEnd:'2027-05-21',
+     examStart:'2027-05-24', examEnd:'2027-06-11', provisional:true}
+  ]
+},
+{
+  code:'Manchester', zh:'曼彻斯特大学', alias:['manchester','曼大','曼彻斯特'], tz:'Europe/London', city:'曼彻斯特', color:'#6a1b9a',
+  src:'https://www.manchester.ac.uk/about/key-dates/',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-18',
+     breaks:[['2026-11-02','2026-11-06','Reading Week'],['2026-12-21','2027-01-08','Christmas break']],
+     termEnd:'2027-01-08', studyStart:'2027-01-11', studyEnd:'2027-01-13',
+     examStart:'2027-01-14', examEnd:'2027-01-29',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
+    {name:'Semester 2', start:'2027-02-01', teachEnd:'2027-05-14',
+     breaks:[['2027-03-22','2027-04-04','Easter break'],['2027-04-05','2027-04-11','Non-teaching period']],
+     examStart:'2027-05-17', examEnd:'2027-06-09',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.07（参考）']]}
+  ]
+},
+{
+  code:'Edinburgh', zh:'爱丁堡大学', alias:['edinburgh','爱丁堡'], tz:'Europe/London', city:'爱丁堡', color:'#b31b34',
+  src:'https://registryservices.ed.ac.uk/student-systems/key-dates',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-14', oEnd:'2026-09-18', start:'2026-09-21', teachEnd:'2026-12-04',
+     studyStart:'2026-12-07', studyEnd:'2026-12-08', examStart:'2026-12-09', examEnd:'2026-12-21',
+     extras:[['退课截止日','待官网公布'],['成绩公布','S1 成绩约 2027.02.05（参考）','2027-02-05']]},
+    {name:'Semester 2', oStart:'2027-01-06', oEnd:'2027-01-08', start:'2027-01-11', teachEnd:'2027-04-02',
+     breaks:[['2027-02-15','2027-02-19','Flexible Learning Week'],['2027-04-05','2027-04-16','Spring vacation']],
+     termEnd:'2027-04-16', studyStart:'2027-04-19', studyEnd:'2027-04-23',
+     examStart:'2027-04-26', examEnd:'2027-05-21',
+     extras:[['退课截止日','待官网公布'],['成绩公布','S2 成绩约 2027.06.14（参考）','2027-06-14']]}
+  ]
+},
+{
+  code:'Glasgow', zh:'格拉斯哥大学', alias:['glasgow','格拉斯哥'], tz:'Europe/London', city:'格拉斯哥', color:'#003865',
+  src:'https://www.gla.ac.uk/myglasgow/apg/sessiondates/session2026-27/',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-14', oEnd:'2026-09-18', start:'2026-09-21', teachEnd:'2026-12-04',
+     examStart:'2026-12-07', examEnd:'2026-12-18',
+     extras:[['退课截止日','S1 Add/Drop 10.02','2026-10-02'],['成绩公布','Winter 成绩 2027.02.11','2027-02-11']]},
+    {name:'Semester 2', oStart:'2027-01-06', oEnd:'2027-01-08', start:'2027-01-11', teachEnd:'2027-03-26',
+     breaks:[['2027-03-29','2027-04-16','Spring vacation']], termEnd:'2027-04-16',
+     studyStart:'2027-04-19', studyEnd:'2027-04-23', examStart:'2027-04-26', examEnd:'2027-05-21',
+     extras:[['退课截止日','S2 Add/Drop 01.22','2027-01-22'],['成绩公布','Spring 成绩 2027.06.15','2027-06-15']]}
+  ]
+},
+{
+  code:'Birmingham', zh:'伯明翰大学', alias:['birmingham','伯明翰','伯大'], tz:'Europe/London', city:'伯明翰', color:'#c8102e',
+  src:'https://intranet.birmingham.ac.uk/student/dates/index.aspx',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-11',
+     breaks:[['2026-11-02','2026-11-06','Teaching & assessment support week'],
+             ['2026-12-14','2027-01-08','Winter vacation']],
+     termEnd:'2027-01-08', examStart:'2027-01-11', examEnd:'2027-01-16',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
+    {name:'Semester 2', start:'2027-01-18', teachEnd:'2027-04-30',
+     breaks:[['2027-02-22','2027-02-26','Teaching & assessment support week'],
+             ['2027-03-29','2027-04-23','Spring vacation'],
+             ['2027-05-03','2027-05-07','Teaching & assessment support week']],
+     termEnd:'2027-05-07', examStart:'2027-05-10', examEnd:'2027-06-05',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.07（参考）']]}
+  ]
+},
+{
+  code:'UAL', zh:'伦敦艺术大学', alias:['ual','伦敦艺术大学','伦艺'], tz:'Europe/London', city:'伦敦', color:'#111827',
+  src:'https://www.arts.ac.uk/students/term-dates',
+  periods:[
+    {name:'Autumn Term', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-11',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Spring Term', start:'2027-01-11', teachEnd:'2027-03-19',
+     breaks:[['2027-02-08','2027-02-12','Academic break']]},
+    {name:'Summer Term', start:'2027-04-12', teachEnd:'2027-06-18'}
+  ]
+},
+{
+  code:'Bristol', zh:'布里斯托大学', alias:['bristol','布里斯托','布大'], tz:'Europe/London', city:'布里斯托', color:'#a71e34',
+  src:'https://www.bristol.ac.uk/students/updates/academic-year-changes/',
+  periods:[
+    {name:'Teaching Block 1', oStart:'2026-09-14', oEnd:'2026-09-18', start:'2026-09-21', teachEnd:'2026-12-11',
+     breaks:[['2026-10-26','2026-10-30','Consolidation Week']],
+     examStart:'2026-12-14', examEnd:'2026-12-18',
+     extras:[['退课截止日','待官网公布'],['成绩公布','TB1 成绩约 2027.01（参考）']]},
+    {name:'Teaching Block 2', start:'2027-01-18', teachEnd:'2027-04-30',
+     breaks:[['2027-02-22','2027-02-26','Consolidation Week'],['2027-03-22','2027-04-09','Spring vacation']],
+     examStart:'2027-05-04', examEnd:'2027-05-21',
+     extras:[['退课截止日','待官网公布'],['成绩公布','TB2 成绩约 2027.06（参考）']]}
+  ]
+},
+{
+  code:'Southampton', zh:'南安普顿大学', alias:['southampton','南安普顿','南安'], tz:'Europe/London', city:'南安普顿', color:'#0072a3',
+  src:'https://www.southampton.ac.uk/about/term-dates',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-12',
+     breaks:[['2026-12-14','2027-01-03','Christmas vacation']], termEnd:'2027-01-03',
+     examStart:'2027-01-04', examEnd:'2027-01-16',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
+    {name:'Semester 2', start:'2027-01-25', teachEnd:'2027-04-30',
+     breaks:[['2027-03-22','2027-04-09','Easter vacation']],
+     examStart:'2027-05-10', examEnd:'2027-05-29',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.06（参考）']]}
+  ]
+},
+{
+  code:'KCL', zh:'伦敦国王学院', alias:['kcl','国王学院','伦敦国王学院'], tz:'Europe/London', city:'伦敦', color:'#8c1c3a',
+  src:'https://www.kcl.ac.uk/abroad/applying/dates-and-deadlines.aspx',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-18',
+     breaks:[['2026-11-02','2026-11-06','Reading Week'],['2026-12-21','2027-01-03','Christmas break']],
+     termEnd:'2027-01-03', examStart:'2027-01-08', examEnd:'2027-01-22',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.03（参考）']]},
+    {name:'Semester 2', start:'2027-01-22', teachEnd:'2027-03-25',
+     breaks:[['2027-03-01','2027-03-05','Reading Week'],['2027-03-26','2027-04-16','Easter break']],
+     termEnd:'2027-04-16', studyStart:'2027-04-19', studyEnd:'2027-05-07',
+     examStart:'2027-05-10', examEnd:'2027-06-04', provisional:true,
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.07（参考）']]}
+  ]
+},
+{
+  code:'Leeds', zh:'利兹大学', alias:['leeds','利兹'], tz:'Europe/London', city:'利兹', color:'#0f7b3f',
+  src:'https://www.leeds.ac.uk/term-dates/',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-27', start:'2026-09-28', teachEnd:'2026-12-11',
+     breaks:[['2026-12-14','2027-01-08','Christmas vacation']], termEnd:'2027-01-08',
+     examStart:'2027-01-11', examEnd:'2027-01-22',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
+    {name:'Semester 2', start:'2027-01-25', teachEnd:'2027-05-07',
+     breaks:[['2027-03-22','2027-04-16','Easter vacation']],
+     examStart:'2027-05-17', examEnd:'2027-06-04',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.07（参考）']]}
+  ]
+},
+{
+  code:'Imperial', zh:'帝国理工学院', alias:['imperial','帝国理工','ic'], tz:'Europe/London', city:'伦敦', color:'#003e74',
+  src:'https://www.imperial.ac.uk/admin-services/registry/term-dates/',
+  periods:[
+    {name:'Autumn Term', start:'2026-09-28', teachEnd:'2026-12-11',
+     examStart:'2027-01-04', examEnd:'2027-01-08',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Spring Term', start:'2027-01-11', teachEnd:'2027-03-19',
+     examStart:'2027-04-19', examEnd:'2027-04-30'},
+    {name:'Summer Term', start:'2027-04-26', teachEnd:'2027-06-25',
+     extras:[['成绩公布','最终成绩约 2027.06.30（参考）','2027-06-30']]}
+  ]
+},
+{
+  code:'Sheffield', zh:'谢菲尔德大学', alias:['sheffield','谢菲尔德','谢大'], tz:'Europe/London', city:'谢菲尔德', color:'#1d4e89',
+  src:'https://www.sheffield.ac.uk/about/dates',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-26', start:'2026-09-28', teachEnd:'2026-12-18',
+     breaks:[['2026-12-21','2027-01-15','Christmas vacation']], termEnd:'2027-01-15',
+     examStart:'2027-01-18', examEnd:'2027-02-06',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
+    {name:'Semester 2', start:'2027-02-08', teachEnd:'2027-05-21',
+     breaks:[['2027-03-22','2027-04-09','Easter vacation']],
+     examStart:'2027-05-24', examEnd:'2027-06-12',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.06（参考）']]}
+  ]
+},
+{
+  code:'Warwick', zh:'华威大学', alias:['warwick','华威'], tz:'Europe/London', city:'考文垂', color:'#4b2e83',
+  src:'https://warwick.ac.uk/termdates/',
+  periods:[
+    {name:'Autumn Term', oStart:'2026-09-28', oEnd:'2026-10-04', start:'2026-10-05', teachEnd:'2026-12-12',
+     breaks:[['2026-11-09','2026-11-13','Reading Week']],
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Spring Term', start:'2027-01-11', teachEnd:'2027-03-20',
+     breaks:[['2027-02-15','2027-02-19','Reading Week']]},
+    {name:'Summer Term', start:'2027-04-26', teachEnd:'2027-07-03'}
+  ]
+},
+{
+  code:'Durham', zh:'杜伦大学', alias:['durham','杜伦'], tz:'Europe/London', city:'杜伦', color:'#68246d',
+  src:'https://www.dur.ac.uk/dates/',
+  periods:[
+    {name:'Michaelmas Term', oStart:'2026-09-28', oEnd:'2026-10-04', start:'2026-10-05', teachEnd:'2026-12-11',
+     breaks:[['2026-12-14','2027-01-10','Christmas vacation']], termEnd:'2027-01-10',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Epiphany Term', start:'2027-01-11', teachEnd:'2027-03-19',
+     breaks:[['2027-03-22','2027-04-25','Easter vacation']], termEnd:'2027-04-25'},
+    {name:'Easter Term', start:'2027-04-26', teachEnd:'2027-06-25'}
+  ]
+},
+{
+  code:'Nottingham', zh:'诺丁汉大学', alias:['nottingham','诺丁汉'], tz:'Europe/London', city:'诺丁汉', color:'#0b3d5c',
+  src:'https://www.nottingham.ac.uk/about/keydates/index.aspx',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-11',
+     breaks:[['2026-12-14','2027-01-08','Winter vacation']], termEnd:'2027-01-08',
+     examStart:'2027-01-11', examEnd:'2027-01-22',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
+    {name:'Semester 2', start:'2027-01-25', teachEnd:'2027-05-14',
+     breaks:[['2027-03-26','2027-04-23','Spring vacation']],
+     examStart:'2027-05-17', examEnd:'2027-06-04',
+     extras:[['退课截止日','待官网公布'],['成绩公布','约 2027.07.15（参考）','2027-07-15']]}
+  ]
+},
+{
+  code:'Liverpool', zh:'利物浦大学', alias:['liverpool','利物浦'], tz:'Europe/London', city:'利物浦', color:'#8a1c3c',
+  src:'https://www.liverpool.ac.uk/term-dates/',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-27', start:'2026-09-28', teachEnd:'2026-12-18',
+     breaks:[['2026-12-21','2027-01-08','Winter break']], termEnd:'2027-01-08',
+     examStart:'2027-01-11', examEnd:'2027-01-29',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
+    {name:'Semester 2', start:'2027-02-01', teachEnd:'2027-05-14',
+     breaks:[['2027-03-22','2027-04-09','Easter break']],
+     examStart:'2027-05-17', examEnd:'2027-06-04',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.06（参考）']]}
+  ]
+},
+{
+  code:'Newcastle', zh:'纽卡斯尔大学', alias:['newcastle','纽卡斯尔'], tz:'Europe/London', city:'纽卡斯尔', color:'#12406b',
+  src:'https://www.ncl.ac.uk/regulations/term-dates/',
+  periods:[
+    {name:'Semester 1', oStart:'2026-09-14', oEnd:'2026-09-18', start:'2026-09-21', teachEnd:'2026-12-11',
+     breaks:[['2026-12-14','2027-01-08','Winter break']], termEnd:'2027-01-08',
+     examStart:'2027-01-11', examEnd:'2027-01-23',
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
+    {name:'Semester 2', start:'2027-01-25', teachEnd:'2027-06-04',
+     breaks:[['2027-03-29','2027-04-16','Easter break']],
+     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.06（参考）']]}
+  ]
+},
+{
+  code:'Cambridge', zh:'剑桥大学', alias:['cambridge','剑桥'], tz:'Europe/London', city:'剑桥', color:'#4b8fa8',
+  src:'https://www.cam.ac.uk/about-the-university/term-dates-and-calendars',
+  periods:[
+    {name:'Michaelmas Term', start:'2026-10-06', teachEnd:'2026-11-27',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Lent Term', start:'2027-01-19', teachEnd:'2027-03-12'},
+    {name:'Easter Term', start:'2027-04-27', teachEnd:'2027-06-18'}
+  ]
+},
+{
+  code:'LSE', zh:'伦敦政治经济学院', alias:['lse','伦敦政经','政经'], tz:'Europe/London', city:'伦敦', color:'#7a1f2b',
+  src:'https://info.lse.ac.uk/current-students/term-dates',
+  periods:[
+    {name:'Autumn Term', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-11',
+     breaks:[['2026-11-02','2026-11-06','Reading Week'],['2026-12-14','2027-01-03','Winter break']],
+     termEnd:'2027-01-03', examStart:'2027-01-04', examEnd:'2027-01-10',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Winter Term', start:'2027-01-11', teachEnd:'2027-03-25',
+     breaks:[['2027-02-15','2027-02-19','Reading Week']]},
+    {name:'Spring Term', start:'2027-04-26', teachEnd:'2027-06-11'}
+  ]
+},
+{
+  code:'Exeter', zh:'埃克塞特大学', alias:['exeter','埃克塞特'], tz:'Europe/London', city:'埃克塞特', color:'#1f6f5c',
+  src:'https://exeter.ac.uk/students/administration/termdates',
+  periods:[
+    {name:'Autumn Term', oStart:'2026-09-14', oEnd:'2026-09-20', start:'2026-09-21', teachEnd:'2026-12-11',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Spring Term', start:'2027-01-04', teachEnd:'2027-03-26'},
+    {name:'Summer Term', start:'2027-04-26', teachEnd:'2027-06-11',
+     extras:[['成绩公布','约 2027.07（参考）']]}
+  ]
+}
+];
+
+/* ============================================================
+   3b. 站点配置（第 2 层的两个校历站）
+   ============================================================ */
+const SITES = {
+  au: {
+    key:'au',
+    name:'澳洲高校教学周日历',
+    country:'澳大利亚',
+    countryAlias:['澳大利亚','澳洲','australia'],
+    accent:'#0f62fe',
+    lsKey:'auweek.focus.v1',
+    stamp:'数据源：各校官网 2026 官方校历',
+    placeholder:'如：UNSW、悉尼、莫纳什、QUT…　回车确认',
+    termSuffixAlways:true,
+    summerAlias:true,
+    yearEndFallback:false,
+    orientationLabel:'O-Week',
+    studyWord: s => s.code==='USYD' ? 'STUVAC' : (s.code==='UTS' ? 'StuVac' : 'SWOT Vac / Study period'),
+    examNote: d => `距考试结束 ${d} 天`,
+    emptyMsg:'当前没有显示任何学校，请在下方添加或恢复默认列表。',
+    afterNoNext:'暂无后续学期数据',
+    footNotes:[
+      '教学周依据各校<b>官方校历</b>的「教学起始日 + 期中/学期内假期 + 教学结束日 + 复习周 + 考试周」计算；带「参考」标记的学期表示官网尚未公布完整日期，起止为按官方已公布开学日推算，请以官网为准。'
+    ],
+    links:[["https://student.unsw.edu.au/calendar", "UNSW"], ["https://www.sydney.edu.au/students/key-dates.html", "USYD"], ["https://about.uq.edu.au/academic-calendar", "UQ"], ["https://www.handbook.uts.edu.au/dates_academic.html", "UTS"], ["https://students.unimelb.edu.au/your-course/manage-your-course/key-dates", "UoM"], ["https://www.monash.edu/students/admin/dates/summary-dates", "Monash"], ["https://www.deakin.edu.au/study/key-dates", "Deakin"], ["https://www.rmit.edu.au/students/my-course/important-dates/2026/he", "RMIT"], ["https://www.adelaide.edu.au/student/dates/academic", "UoA"], ["https://www2.griffith.edu.au/academic-calendar-key-dates", "GU"], ["https://www.curtin.edu.au/students/essentials/academic-calendar/", "Curtin"], ["https://cms.qut.edu.au/__data/assets/pdf_file/0007/1443445/2026-academic-calendar-1.pdf", "QUT"], ["https://students.mq.edu.au/study/plan-my-study/key-dates", "MQ"], ["https://www.uwa.edu.au/students/your-studies/important-dates", "UWA"], ["https://www.latrobe.edu.au/calendar/academic-calendar", "La Trobe"], ["https://bond.edu.au/node/4288", "Bond"], ["https://www.jcu.edu.au/jcunow/key-dates", "JCU"], ["https://cqu.edu.au/study/future-students/your-journey/enrol/academic-calendars", "CQU"], ["https://www.westernsydney.edu.au/students/dates", "WSU"], ["https://www.uow.edu.au/student/dates/", "UOW"], ["https://www.newcastle.edu.au/current-students/study-essentials/enrolment/enrolment-dates", "UON"], ["https://www.scu.edu.au/current-students/student-administration/key-dates--teaching-calendar/", "SCU"], ["https://www.canberra.edu.au/future-students/key-dates", "UC"], ["https://www.utas.edu.au/key-dates/2026-study-periods", "UTAS"]],
+    schools: AU_SCHOOLS
+  },
+  uk: {
+    key:'uk',
+    name:'英国高校教学周日历查询',
+    country:'英国',
+    countryAlias:['英国','uk','united kingdom','britain','england'],
+    accent:'#6d28d9',
+    lsKey:'ukweek.focus.v1',
+    stamp:'数据源：各校官网 2026/27 官方校历',
+    placeholder:'如：UCL、曼大、伦敦、KCL、剑桥…　回车确认',
+    termSuffixAlways:false,
+    summerAlias:false,
+    yearEndFallback:true,
+    orientationLabel:'Welcome Week',
+    studyWord: () => 'Revision / Study period',
+    examNote: d => `Assessment period · 距考试结束 ${d} 天`,
+    emptyMsg:'当前没有显示任何学校。',
+    afterNoNext:'本学年校历已结束 · 下一学年（2027/28）校历待官网公布',
+    footNotes:[
+      '教学周依据各校<b>官方校历</b>的「教学起始日 + 学期内假期 / 阅读周 + 教学结束日 + 复习周 + 考试周」计算；休息周（阅读周、巩固周、圣诞 / 复活节假期等）<b>不计入教学周</b>，也不占教学周编号。带「参考」标记的学期表示官网尚未公布完整日期，起止按官方已公布的开学与结课日推算。退课截止日 / 成绩公布日以各校 Registry 公布为准，官网未公布者标注「待官网公布」。',
+      '英国全境同属 Europe/London 时区，夏令时（BST）比北京时间晚 7 小时，冬令时（GMT）晚 8 小时，页面徽章按当天实际时差显示。'
+    ],
+    links:[["https://www.ucl.ac.uk/students/exams-and-assessments/key-dates", "UCL"], ["https://www.manchester.ac.uk/about/key-dates/", "Manchester"], ["https://registryservices.ed.ac.uk/student-systems/key-dates", "Edinburgh"], ["https://www.gla.ac.uk/myglasgow/apg/sessiondates/session2026-27/", "Glasgow"], ["https://intranet.birmingham.ac.uk/student/dates/index.aspx", "Birmingham"], ["https://www.arts.ac.uk/students/term-dates", "UAL"], ["https://www.bristol.ac.uk/students/updates/academic-year-changes/", "Bristol"], ["https://www.southampton.ac.uk/about/term-dates", "Southampton"], ["https://www.kcl.ac.uk/abroad/applying/dates-and-deadlines.aspx", "KCL"], ["https://www.leeds.ac.uk/term-dates/", "Leeds"], ["https://www.imperial.ac.uk/admin-services/registry/term-dates/", "Imperial"], ["https://www.sheffield.ac.uk/about/dates", "Sheffield"], ["https://warwick.ac.uk/termdates/", "Warwick"], ["https://www.dur.ac.uk/dates/", "Durham"], ["https://www.nottingham.ac.uk/about/keydates/index.aspx", "Nottingham"], ["https://www.liverpool.ac.uk/term-dates/", "Liverpool"], ["https://www.ncl.ac.uk/regulations/term-dates/", "Newcastle"], ["https://www.cam.ac.uk/about-the-university/term-dates-and-calendars", "Cambridge"], ["https://info.lse.ac.uk/current-students/term-dates", "LSE"], ["https://exeter.ac.uk/students/administration/termdates", "Exeter"]],
+    schools: UK_SCHOOLS
+  }
+};
+let SITE = SITES.au;
+
 /* ============================================================
    4. 教学周计算引擎
    ============================================================ */
 function normBreaks(p){
-  // 第 4 个字段 = 官方是否把这一周也编入周次（如 UNSW 的 flexi week 官方仍称 Week 6）：
-  // 无论是否编号，它都是「休息周」，一律不计入教学周。
+  // 休息周一律不计入教学周，也不占教学周编号（澳洲的 flexi week、英国的 Reading Week 同理）
   return (p.breaks||[]).map(b=>({
     s:D(b[0]), e:D(b[1]), label:b[2]||'假期', numbered: !!b[3]
   }));
 }
-/* 假期名称中文化 */
+/* 假期名称中文化（澳洲 + 英国） */
 function brLabel(label){
   const map = {
+    /* 英国 */
+    'Reading Week':'阅读周（无课）',
+    'Consolidation Week':'巩固周（无课）','Consolidation week':'巩固周（无课）',
+    'Academic break':'学业假期',
+    'Flexible Learning Week':'弹性学习周（无课）',
+    'Teaching & assessment support week':'教学与考核辅导周（无课）',
+    'Christmas vacation':'圣诞假期','Christmas break':'圣诞假期','Winter vacation':'寒假','Winter break':'寒假',
+    'Easter vacation':'复活节假期','Easter break':'复活节假期','Spring vacation':'春假','Spring break':'春假',
+    'Summer vacation':'暑假','Preparation Week':'准备周（无课）','Assessment Preparation Week':'考核准备周（无课）',
+    'Welcome Week':'迎新周','Induction Week':'入学教育周',
+    /* 澳洲 */
     'Flexibility Week':'灵活周（无课）',
     'Mid-semester break':'期中假期','In-semester break':'期中假期','Mid-session break':'期中假期',
     'Mid-session recess':'期中假期','Mid-session StuVac':'期中假期','Semester recess':'期中假期',
-    'Non-teaching period':'非教学周','Student vacation':'学生假期','Intra-trimester break':'学期内假期',
+    'Non-teaching period':'非教学周',
+    'Student vacation':'学生假期','Intra-trimester break':'学期内假期',
     'Tuition-free week':'免课周','Study break':'无课周','Study vacation':'无课周',
     'Lecture recess':'停课周','Class free week':'无课周'
   };
@@ -801,14 +1181,17 @@ function breakOnWeek(br, mon, sun){
   }
   return cnt>=3;
 }
+/* 周循环的终点：优先 termEnd（教学结束后的假期周也要进表），否则 teachEnd */
+function rangeEndOf(p){ return p.termEnd || p.teachEnd; }
 function buildWeeks(p){
   const brs = normBreaks(p);
-  const last = p.teachEnd ? D(p.teachEnd) : null;
+  const endStr = rangeEndOf(p);
+  const last = endStr ? D(endStr) : null;
   const out=[]; let m = mondayOf(D(p.start)); let i=0; let pos=0; let guard=0;
   while(guard++ < 80){
     const sun = addDays(m,6);
     if(last && m>last) break;
-    pos++;                                       // 教学期内第几周（含休息周）
+    pos++;                                       // 学期内第几周（含休息周）
     const hit = brs.find(b=>breakOnWeek(b,m,sun));
     if(hit){                                     // 休息周：不计入教学周
       out.push({index:null, pos, mon:m, sun, isBreak:true, label:hit.label});
@@ -819,7 +1202,7 @@ function buildWeeks(p){
   }
   return out;
 }
-/* 该学期官方是否把休息周也编入周次（UNSW flexi week 官方仍叫 Week 6） */
+/* 该学期官方是否把休息周也编入周次（如 UNSW 的 flexi week 官方仍叫 Week 6） */
 function numberedRest(p){ return normBreaks(p).some(b=>b.numbered); }
 /* 教学周在教学期内显示的周次：按各校官方习惯 */
 function weekNo(p, w){
@@ -831,13 +1214,14 @@ function teachTotal(p){ return buildWeeks(p).filter(w=>!w.isBreak).length; }
 function evaluate(school, today){
   const ps = school.periods.slice().sort((a,b)=>a.start.localeCompare(b.start));
   for(const p of ps){
-    const end = p.examEnd || p.studyEnd || p.teachEnd;
+    const rEnd = rangeEndOf(p);
+    const end = p.examEnd || p.studyEnd || rEnd;
     if(today > end) continue;
     const oStart = p.oStart || null;
     if(oStart && today < oStart) return {kind:'before', p};
     if(oStart && today >= oStart && today < p.start) return {kind:'orientation', p};
     if(today < p.start) return {kind:'before', p};
-    if(today > p.teachEnd){
+    if(today > rEnd){
       if(p.studyStart && today >= p.studyStart && today <= (p.studyEnd||p.studyStart)) return {kind:'study', p};
       if(p.examStart && today >= p.examStart && today <= (p.examEnd||p.examStart)) return {kind:'exam', p};
       return {kind:'after', p};
@@ -846,6 +1230,14 @@ function evaluate(school, today){
     const w = weeks.find(x=> today>=iso(x.mon) && today<=iso(x.sun));
     if(w) return {kind: w.isBreak ? 'break' : 'teaching', p, w, weeks};
     return {kind:'holiday', p};
+  }
+  // 所有已收录学期都已结束（学年末暑假）
+  if(SITE.yearEndFallback){
+    const lastP = ps[ps.length-1];
+    if(lastP){
+      const lastEnd = lastP.examEnd || lastP.studyEnd || rangeEndOf(lastP);
+      if(today > lastEnd) return {kind:'after', p:lastP};
+    }
   }
   return {kind:'nodata'};
 }
@@ -857,13 +1249,10 @@ function nextPeriod(school, today){
 /* ============================================================
    5. 渲染
    ============================================================ */
-const LS_FOCUS='auweek.focus.v1';
-
-function allSchools(){ return BUILTIN; }
+function allSchools(){ return SITE.schools; }
 
 /* ---------- 搜索 / 单独显示 ---------- */
 let focusKey = null;
-try{ focusKey = localStorage.getItem(LS_FOCUS) || null; }catch(e){ focusKey=null; }
 let dropIdx = -1;
 
 function keyOf(s){ return s.code; }
@@ -874,10 +1263,13 @@ function matchSchools(q){
   const score = s=>{
     const code=(s.code||'').toLowerCase(), zh=(s.zh||'').toLowerCase();
     const city=(s.city||'').toLowerCase(), tz=(s.tz||'').toLowerCase();
+    const al=(s.alias||[]).join('|').toLowerCase();
     if(code===t || zh===t) return 0;
+    if(al.split('|').includes(t)) return 0;
     if(code.startsWith(t)) return 1;
     if(zh.includes(t)) return 2;
-    if(city.includes(t) || tz.includes(t)) return 3;
+    if(city.includes(t) || tz.includes(t) || al.includes(t)
+       || (t.length>=2 && SITE.countryAlias.some(k=>k.includes(t)))) return 3;
     return code.includes(t) ? 4 : 9;
   };
   return allSchools().map(s=>({s,n:score(s)}))
@@ -890,7 +1282,7 @@ function renderDrop(){
   const ms=matchSchools(document.getElementById('qSchool').value);
   if(!ms.length){ drop.hidden=true; drop.innerHTML=''; dropIdx=-1; return; }
   drop.innerHTML = ms.map((s,i)=>
-    `<div class="sb-item${i===dropIdx?' act':''}" data-key="${keyOf(s)}"><b>${s.code}</b><i>${s.zh||''}</i><s>${s.city||''}</s></div>`
+    `<div class="sb-item${i===dropIdx?' act':''}" data-key="${keyOf(s)}"><b>${s.code}</b><i>${s.zh||''}</i><s>${s.city ? SITE.country + '·' + s.city : ''}</s></div>`
   ).join('');
   drop.hidden=false;
   drop.querySelectorAll('.sb-item').forEach(el=>{
@@ -901,7 +1293,7 @@ function selectSchool(key){
   const s=findSchool(key), msg=document.getElementById('sbMsg');
   if(!s){ msg.style.color='var(--red)'; msg.textContent='未找到该学校，请从下拉列表中选择。'; return; }
   focusKey=key;
-  try{ localStorage.setItem(LS_FOCUS,key); }catch(e){}
+  try{ localStorage.setItem(SITE.lsKey,key); }catch(e){}
   document.getElementById('qSchool').value = s.code + (s.zh?' '+s.zh:'');
   document.getElementById('sbDrop').hidden=true;
   document.getElementById('sbTag').textContent = `单独显示 ${s.code}`;
@@ -912,10 +1304,10 @@ function selectSchool(key){
 }
 function clearFocus(){
   focusKey=null;
-  try{ localStorage.removeItem(LS_FOCUS); }catch(e){}
+  try{ localStorage.removeItem(SITE.lsKey); }catch(e){}
   document.getElementById('qSchool').value='';
   document.getElementById('sbDrop').hidden=true;
-  document.getElementById('sbTag').textContent='输入简称 / 中文名 / 城市';
+  document.getElementById('sbTag').textContent='输入简称 / 中文名 / 城市 / 国家';
   const msg=document.getElementById('sbMsg');
   msg.style.color='var(--muted)';
   msg.textContent='已恢复显示全部学校。';
@@ -952,8 +1344,18 @@ function statusPill(kind){
 /* ---------- 学期时间汇总表 ---------- */
 function fmtDot(s){ const d=D(s); return `${d.getUTCMonth()+1}.${d.getUTCDate()}`; }
 function termShort(name){
-  return name.replace('Summer Term (U1)','Summer').replace('Summer Term','Summer')
-             .replace(/Semester\s*/,'S').replace(/Trimester\s*/,'T').replace(/Term\s*(?=[\dU])/,'T').replace(/\s*Session\s*/,'');
+  let s = String(name);
+  if(SITE.summerAlias) s = s.replace('Summer Term (U1)','Summer').replace('Summer Term','Summer');
+  return s
+    .replace(/Semester\s*/g,'S')
+    .replace(/Trimester\s*/g,'T')
+    .replace(/Term\s*(?=[\dU])/g,'T')
+    .replace(/\s*Session\s*/g,'')
+    .trim();
+}
+function termTitle(name){
+  const s = termShort(name);
+  return (SITE.termSuffixAlways || /^(S|T)\d/.test(s)) ? s+'学期' : s;
 }
 function summaryTable(s, p, today){
   if(!p || !p.start || !p.teachEnd) return '';
@@ -967,7 +1369,7 @@ function summaryTable(s, p, today){
     if(w.isBreak){
       // 休息周：不计入教学周 —— 单独成组、不占教学周编号，只显示假期名称
       push('休息周', brLabel(w.label), d, iso(w.mon), iso(w.sun),'r-break');
-      if(nrest) wn = w.pos;          // 官方仍把该周编入周次时（UNSW），后续周次顺延
+      if(nrest) wn = w.pos;          // 官方仍把该周编入周次时，后续周次顺延
     } else {
       wn = nrest ? w.pos : w.index;  // index = 实际第几教学周（休息周不占号）
       push('教学周',`W${wn}`, d, iso(w.mon), iso(w.sun),'');
@@ -984,7 +1386,7 @@ function summaryTable(s, p, today){
     rows.push({g:ex[0], w:'', d:(ex[1]||'')+cnt, cls:'r-extra', cur:false});
   }
 
-  let html = `<div class="sc-sum"><div class="sc-sum-h">${s.code} ${p.start.slice(0,4)}年 ${termShort(p.name)}学期</div><table>`;
+  let html = `<div class="sc-sum"><div class="sc-sum-h">${s.code} ${p.start.slice(0,4)}年 ${termTitle(p.name)}</div><table>`;
   rows.forEach((r,idx)=>{
     const startRun = idx===0 || rows[idx-1].g!==r.g;
     let span=1;
@@ -1022,7 +1424,7 @@ function renderSchools(){
   host.classList.toggle('single', !!focused);
   document.getElementById('schTag').textContent = focused ? `单独显示 ${focused.code}` : `${list.length} 所学校`;
   if(!list.length){
-    host.innerHTML = `<div class="empty">当前没有显示任何学校，请在下方添加或恢复默认列表。</div>`;
+    host.innerHTML = `<div class="empty">${SITE.emptyMsg}</div>`;
     return;
   }
   host.innerHTML = list.map(s=>{
@@ -1048,28 +1450,30 @@ function renderSchools(){
       if(r.p.examStart && r.p.examStart > r.p.teachEnd) bits.push(`考试 ${fmtMD(r.p.examStart)} 起`);
       note = `<div class="sc-note">${bits.join(' · ')}</div>`;
     } else if(r.kind==='break'){
-      const resume = (()=> { const ws=r.weeks||buildWeeks(r.p); const after=ws.find(x=>iso(x.mon)>iso(r.w.sun) && !x.isBreak); return after?iso(after.mon):null; })();
-      const total = (r.weeks||buildWeeks(r.p)).filter(w=>!w.isBreak).length;
-      const done = (r.weeks||buildWeeks(r.p)).filter(w=>!w.isBreak && iso(w.sun) < iso(r.w.mon)).length;
+      const ws = r.weeks || buildWeeks(r.p);
+      const after = ws.find(x=>iso(x.mon)>iso(r.w.sun) && !x.isBreak);
+      const resume = after ? iso(after.mon) : null;
+      const total = ws.filter(w=>!w.isBreak).length;
+      const done = ws.filter(w=>!w.isBreak && iso(w.sun) < iso(r.w.mon)).length;
       pct = total?Math.round(done/total*100):0;
-      main = `<div class="sc-week" style="font-size:24px;padding-bottom:4px">${brLabel(r.w.label)}</div>`;
+      main = `<div class="sc-week" style="font-size:20px;padding-bottom:3px">${brLabel(r.w.label)}</div>`;
       metaA = `<div>区间 <span>${fmtMDshort(iso(r.w.mon))} – ${fmtMDshort(iso(r.w.sun))}</span></div>`;
       metaB = resume ? `<div>复课 <span>${fmtMD(resume)}</span></div>` : `<div>教学结束 <span>${fmtMD(r.p.teachEnd)}</span></div>`;
       note = `<div class="sc-note">休息周不计入教学周 · 已完成 ${done} / ${total} 周教学 · 假期剩余 ${diffDays(today, iso(r.w.sun))+1} 天</div>`;
     } else if(r.kind==='study'){
-      main = `<div class="sc-week" style="font-size:24px;padding-bottom:4px">复习周</div>`;
+      main = `<div class="sc-week" style="font-size:20px;padding-bottom:3px">复习周</div>`;
       metaA = `<div>区间 <span>${fmtMDshort(r.p.studyStart)} – ${fmtMDshort(r.p.studyEnd)}</span></div>`;
       metaB = r.p.examStart ? `<div>考试 <span>${fmtMD(r.p.examStart)}</span></div>` : '';
-      note = `<div class="sc-note">${s.code==='USYD'?'STUVAC':(s.code==='UTS'?'StuVac':'SWOT Vac / Study period')} · 距考试开始 ${diffDays(today, r.p.examStart||r.p.studyEnd)} 天</div>`;
+      note = `<div class="sc-note">${SITE.studyWord(s)} · 距考试开始 ${diffDays(today, r.p.examStart||r.p.studyEnd)} 天</div>`;
       pct = 97;
     } else if(r.kind==='exam'){
-      main = `<div class="sc-week" style="font-size:24px;padding-bottom:4px">考试期</div>`;
+      main = `<div class="sc-week" style="font-size:20px;padding-bottom:3px">考试期</div>`;
       metaA = `<div>区间 <span>${fmtMDshort(r.p.examStart)} – ${fmtMDshort(r.p.examEnd)}</span></div>`;
       metaB = `<div>结束 <span>${fmtMD(r.p.examEnd)}</span></div>`;
-      note = `<div class="sc-note">距考试结束 ${diffDays(today, r.p.examEnd)} 天</div>`;
+      note = `<div class="sc-note">${SITE.examNote(diffDays(today, r.p.examEnd))}</div>`;
       pct = 100;
     } else if(r.kind==='orientation'){
-      main = `<div class="sc-week" style="font-size:26px;padding-bottom:4px">O-Week</div>`;
+      main = `<div class="sc-week" style="font-size:21px;padding-bottom:3px">${SITE.orientationLabel}</div>`;
       metaA = `<div>开学 <span>${fmtMD(r.p.start)}</span></div>`;
       metaB = r.p.teachEnd ? `<div>教学结束 <span>${fmtMD(r.p.teachEnd)}</span></div>` : '';
       note = `<div class="sc-note">迎新周 · 距正式开学 ${diffDays(today, r.p.start)} 天</div>`;
@@ -1077,24 +1481,24 @@ function renderSchools(){
     } else if(r.kind==='before'){
       const np = r.p;
       const d = diffDays(today, np.oStart||np.start);
-      main = `<div class="sc-week" style="font-size:22px;padding-bottom:6px">假期中</div>`;
+      main = `<div class="sc-week" style="font-size:18px;padding-bottom:4px">假期中</div>`;
       metaA = `<div>下个学期 <span>${np.name}</span></div>`;
       metaB = `<div>开学 <span>${fmtMD(np.start)}</span></div>`;
       note = `<div class="sc-note">距${np.oStart?'迎新周':'开学'}还有 ${d} 天</div>`;
       pct = 0;
     } else if(r.kind==='after'){
       const np = nextPeriod(s, today);
-      main = `<div class="sc-week" style="font-size:22px;padding-bottom:6px">已结课</div>`;
+      main = `<div class="sc-week" style="font-size:18px;padding-bottom:4px">已结课</div>`;
       metaA = `<div>${r.p.name} 教学已结束</div>`;
       metaB = np ? `<div>下个学期 <span>${fmtMD(np.start)}</span></div>` : '';
       note = np ? `<div class="sc-note">${np.name} 于 ${fmtMD(np.start)} 开学，还有 ${diffDays(today, np.start)} 天</div>`
-                : `<div class="sc-note">暂无后续学期数据</div>`;
+                : `<div class="sc-note">${SITE.afterNoNext}</div>`;
       pct = 100;
     } else if(r.kind==='holiday'){
-      main = `<div class="sc-week" style="font-size:22px;padding-bottom:6px">假期中</div>`;
+      main = `<div class="sc-week" style="font-size:18px;padding-bottom:4px">假期中</div>`;
       note = `<div class="sc-note">当前日期不在 ${r.p.name} 的教学区间内</div>`;
     } else {
-      main = `<div class="sc-week" style="font-size:22px;padding-bottom:6px">无校历数据</div>`;
+      main = `<div class="sc-week" style="font-size:18px;padding-bottom:4px">无校历数据</div>`;
       note = `<div class="sc-note">该学校暂未收录对应年份的校历</div>`;
     }
 
@@ -1105,7 +1509,7 @@ function renderSchools(){
           <div>
             <div class="sc-code">${s.code}</div>
             <div class="sc-zh">${s.zh||''}</div>
-            <div class="sc-city">${s.city||''}</div>
+            <div class="sc-city">${s.city ? SITE.country + '·' + s.city : ''}</div>
           </div>
           <div style="text-align:right"><span class="pill ${cls}">${label}</span><div style="margin-top:6px">${ref}</div></div>
         </div>
@@ -1126,7 +1530,6 @@ function renderSchools(){
 /* ---------- clocks ---------- */
 function tick(){
   const now = new Date();
-  // Beijing
   const bp = new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(now);
   const bg = t=>bp.find(x=>x.type===t).value;
   const bhh = bg('hour')==='24'?'00':bg('hour');
@@ -1135,7 +1538,6 @@ function tick(){
   document.getElementById('bjDate').textContent = `${bg('year')}年${+bg('month')}月${+bg('day')}日 ${WEEK_CN[bjD.getUTCDay()]}`;
   document.getElementById('stampNow').textContent = `本地更新 ${bg('year')}-${bg('month')}-${bg('day')} ${bhh}:${bg('minute')}:${bg('second')}`;
 }
-
 
 /* ---------- 搜索交互 ---------- */
 const qInput = document.getElementById('qSchool');
@@ -1163,18 +1565,71 @@ document.getElementById('btnSearch').onclick = ()=>{
 };
 document.getElementById('btnClearSearch').onclick = clearFocus;
 
+/* ============================================================
+   6. 视图切换（第 1 层入口页 ⇄ 第 2 层校历页）
+   ============================================================ */
+const viewHome = document.getElementById('viewHome');
+const viewCal  = document.getElementById('viewCal');
+
+function currentRoute(){
+  const h = (location.hash || '').replace(/^#\/?/, '').trim().toLowerCase();
+  return SITES[h] ? h : null;
+}
+function applySite(key){
+  SITE = SITES[key];
+  document.getElementById('calTitle').textContent = SITE.name;
+  document.getElementById('calStamp').textContent = SITE.stamp;
+  document.getElementById('qSchool').placeholder = SITE.placeholder;
+  document.getElementById('footNotes').innerHTML = SITE.footNotes.map(t=>`<p>${t}</p>`).join('');
+  document.getElementById('footLinks').innerHTML =
+    SITE.links.map(([h,c])=>`<a href="${h}" target="_blank" rel="noopener">${c}</a>`).join(' · ');
+
+  focusKey = null;
+  try{ focusKey = localStorage.getItem(SITE.lsKey) || null; }catch(e){ focusKey=null; }
+  if(focusKey && !findSchool(focusKey)) focusKey = null;
+  const msg = document.getElementById('sbMsg');
+  msg.style.color = 'var(--muted)';
+  sbDropEl.hidden = true;
+  if(focusKey){
+    const s = findSchool(focusKey);
+    qInput.value = s.code + (s.zh?' '+s.zh:'');
+    document.getElementById('sbTag').textContent = `单独显示 ${s.code}`;
+    msg.textContent = `已单独显示 ${s.code}${s.zh?'（'+s.zh+'）':''} 的校历信息；点「显示全部」可恢复。`;
+  } else {
+    qInput.value = '';
+    document.getElementById('sbTag').textContent = '输入简称 / 中文名 / 城市 / 国家';
+    msg.textContent = '确认后，下方「当前教学周」只单独显示该学校的校历信息。';
+  }
+  document.title = `稿多多校历查询 · ${SITE.name}`;
+  renderSchools();
+  tick();
+}
+function showView(key){
+  const k = (key && SITES[key]) ? key : null;
+  viewHome.hidden = !!k;
+  viewCal.hidden  = !k;
+  document.body.classList.toggle('on-home', !k);
+  if(k) applySite(k);
+  else document.title = '稿多多校历查询';
+  window.scrollTo(0,0);
+}
+function go(key){
+  const now = location.hash || '';
+  const home = now === '' || now === '#' || now === '#/';
+  if((!key && home) || (key && now === '#/'+key)) showView(key);
+  else location.hash = key ? '#/'+key : '#';
+}
+document.querySelectorAll('[data-site]').forEach(el=>{
+  el.addEventListener('click', ()=>{ go(el.dataset.site); });
+});
+document.getElementById('btnBack').addEventListener('click', ()=>{ go(null); });
+window.addEventListener('hashchange', ()=>{ showView(currentRoute()); });
+
 /* ---------- boot ---------- */
-if(focusKey && findSchool(focusKey)){
-  const s=findSchool(focusKey);
-  qInput.value = s.code + (s.zh?' '+s.zh:'');
-  document.getElementById('sbTag').textContent = `单独显示 ${s.code}`;
-  document.getElementById('sbMsg').textContent = `已单独显示 ${s.code} 的校历信息；点「显示全部」可恢复。`;
-} else { focusKey = null; }
-renderSchools();
+showView(currentRoute());
 tick();
 setInterval(tick, 1000);
-// 每天 0:05 重算一次教学周（跨日时刷新卡片）
-setInterval(()=>{ renderSchools(); }, 60000);
+setInterval(()=>{ if(!viewCal.hidden) renderSchools(); }, 60000);
 </script>
 </body>
 </html>
