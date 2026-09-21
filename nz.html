@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>英国大学教学周日历查询 · 稿多多</title>
-<meta name="description" content="英国 20 所大学当前教学周实时查询 — UCL、曼大、爱丁堡、KCL、剑桥、LSE 等，含与北京时差、退课截止日、成绩公布日与学期时间总览。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='3' y='6' width='26' height='23' rx='4' fill='%236d28d9'/><rect x='3' y='6' width='26' height='8' rx='4' fill='%23000000' opacity='.22'/><rect x='8' y='17' width='4' height='4' rx='1' fill='%23fff'/><rect x='14' y='17' width='4' height='4' rx='1' fill='%23fff'/><rect x='20' y='17' width='4' height='4' rx='1' fill='%23fff'/><rect x='8' y='23' width='4' height='4' rx='1' fill='%23fff'/><rect x='14' y='23' width='4' height='4' rx='1' fill='%23fff'/></svg>">
+<title>新西兰大学教学周日历查询 · 稿多多</title>
+<meta name="description" content="新西兰 8 所大学当前教学周实时查询 — 奥克兰、奥塔哥、梅西、怀卡托、惠灵顿维多利亚、坎特伯雷、林肯、AUT，含与北京时差、考试期与学期时间总览。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='3' y='6' width='26' height='23' rx='4' fill='%230f766e'/><rect x='3' y='6' width='26' height='8' rx='4' fill='%23000000' opacity='.22'/><rect x='8' y='17' width='4' height='4' rx='1' fill='%23fff'/><rect x='14' y='17' width='4' height='4' rx='1' fill='%23fff'/><rect x='20' y='17' width='4' height='4' rx='1' fill='%23fff'/><rect x='8' y='23' width='4' height='4' rx='1' fill='%23fff'/><rect x='14' y='23' width='4' height='4' rx='1' fill='%23fff'/></svg>">
 <style>
 
 :root{
@@ -234,7 +234,7 @@ a.home-card{color:inherit;text-decoration:none}
 a.back{display:inline-block;text-decoration:none;line-height:1.45}
 </style>
 </head>
-<body data-site="uk">
+<body data-site="nz">
 
 <div class="wrap" id="viewCal" hidden>
 
@@ -353,281 +353,200 @@ const WEEK_CN = ['星期日','星期一','星期二','星期三','星期四','�
    ============================================================ */
 const AU_SCHOOLS = [];
 
-const UK_SCHOOLS = [
-{
-  code:'UCL', zh:'伦敦大学学院', alias:['ucl','伦敦大学学院'], tz:'Europe/London', city:'伦敦', color:'#500778',
-  src:'https://www.ucl.ac.uk/students/exams-and-assessments/key-dates',
-  periods:[
-    {name:'Term 1', start:'2026-09-28', teachEnd:'2026-12-18',
-     breaks:[['2026-11-09','2026-11-13','Reading Week']],
-     extras:[['退课截止日','待官网公布'],['成绩公布','Term 1 成绩约 2027.03（参考）']]},
-    {name:'Term 2', start:'2027-01-11', teachEnd:'2027-03-24',
-     breaks:[['2027-02-15','2027-02-19','Reading Week']],
-     extras:[['退课截止日','待官网公布'],['成绩公布','Term 3 成绩约 2027.07（参考）']]},
-    {name:'Term 3', start:'2027-04-26', teachEnd:'2027-05-07',
-     studyStart:'2027-05-10', studyEnd:'2027-05-21',
-     examStart:'2027-05-24', examEnd:'2027-06-11', provisional:true}
-  ]
-},
-{
-  code:'Manchester', zh:'曼彻斯特大学', alias:['manchester','曼大','曼彻斯特'], tz:'Europe/London', city:'曼彻斯特', color:'#6a1b9a',
-  src:'https://www.manchester.ac.uk/about/key-dates/',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-18',
-     breaks:[['2026-11-02','2026-11-06','Reading Week'],['2026-12-21','2027-01-08','Christmas break']],
-     termEnd:'2027-01-08', studyStart:'2027-01-11', studyEnd:'2027-01-13',
-     examStart:'2027-01-14', examEnd:'2027-01-29',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
-    {name:'Semester 2', start:'2027-02-01', teachEnd:'2027-05-14',
-     breaks:[['2027-03-22','2027-04-04','Easter break'],['2027-04-05','2027-04-11','Non-teaching period']],
-     examStart:'2027-05-17', examEnd:'2027-06-09',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.07（参考）']]}
-  ]
-},
-{
-  code:'Edinburgh', zh:'爱丁堡大学', alias:['edinburgh','爱丁堡'], tz:'Europe/London', city:'爱丁堡', color:'#b31b34',
-  src:'https://registryservices.ed.ac.uk/student-systems/key-dates',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-14', oEnd:'2026-09-18', start:'2026-09-21', teachEnd:'2026-12-04',
-     studyStart:'2026-12-07', studyEnd:'2026-12-08', examStart:'2026-12-09', examEnd:'2026-12-21',
-     extras:[['退课截止日','待官网公布'],['成绩公布','S1 成绩约 2027.02.05（参考）','2027-02-05']]},
-    {name:'Semester 2', oStart:'2027-01-06', oEnd:'2027-01-08', start:'2027-01-11', teachEnd:'2027-04-02',
-     breaks:[['2027-02-15','2027-02-19','Flexible Learning Week'],['2027-04-05','2027-04-16','Spring vacation']],
-     termEnd:'2027-04-16', studyStart:'2027-04-19', studyEnd:'2027-04-23',
-     examStart:'2027-04-26', examEnd:'2027-05-21',
-     extras:[['退课截止日','待官网公布'],['成绩公布','S2 成绩约 2027.06.14（参考）','2027-06-14']]}
-  ]
-},
-{
-  code:'Glasgow', zh:'格拉斯哥大学', alias:['glasgow','格拉斯哥'], tz:'Europe/London', city:'格拉斯哥', color:'#003865',
-  src:'https://www.gla.ac.uk/myglasgow/apg/sessiondates/session2026-27/',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-14', oEnd:'2026-09-18', start:'2026-09-21', teachEnd:'2026-12-04',
-     examStart:'2026-12-07', examEnd:'2026-12-18',
-     extras:[['退课截止日','S1 Add/Drop 10.02','2026-10-02'],['成绩公布','Winter 成绩 2027.02.11','2027-02-11']]},
-    {name:'Semester 2', oStart:'2027-01-06', oEnd:'2027-01-08', start:'2027-01-11', teachEnd:'2027-03-26',
-     breaks:[['2027-03-29','2027-04-16','Spring vacation']], termEnd:'2027-04-16',
-     studyStart:'2027-04-19', studyEnd:'2027-04-23', examStart:'2027-04-26', examEnd:'2027-05-21',
-     extras:[['退课截止日','S2 Add/Drop 01.22','2027-01-22'],['成绩公布','Spring 成绩 2027.06.15','2027-06-15']]}
-  ]
-},
-{
-  code:'Birmingham', zh:'伯明翰大学', alias:['birmingham','伯明翰','伯大'], tz:'Europe/London', city:'伯明翰', color:'#c8102e',
-  src:'https://intranet.birmingham.ac.uk/student/dates/index.aspx',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-11',
-     breaks:[['2026-11-02','2026-11-06','Teaching & assessment support week'],
-             ['2026-12-14','2027-01-08','Winter vacation']],
-     termEnd:'2027-01-08', examStart:'2027-01-11', examEnd:'2027-01-16',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
-    {name:'Semester 2', start:'2027-01-18', teachEnd:'2027-04-30',
-     breaks:[['2027-02-22','2027-02-26','Teaching & assessment support week'],
-             ['2027-03-29','2027-04-23','Spring vacation'],
-             ['2027-05-03','2027-05-07','Teaching & assessment support week']],
-     termEnd:'2027-05-07', examStart:'2027-05-10', examEnd:'2027-06-05',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.07（参考）']]}
-  ]
-},
-{
-  code:'UAL', zh:'伦敦艺术大学', alias:['ual','伦敦艺术大学','伦艺'], tz:'Europe/London', city:'伦敦', color:'#111827',
-  src:'https://www.arts.ac.uk/students/term-dates',
-  periods:[
-    {name:'Autumn Term', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-11',
-     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
-    {name:'Spring Term', start:'2027-01-11', teachEnd:'2027-03-19',
-     breaks:[['2027-02-08','2027-02-12','Academic break']]},
-    {name:'Summer Term', start:'2027-04-12', teachEnd:'2027-06-18'}
-  ]
-},
-{
-  code:'Bristol', zh:'布里斯托大学', alias:['bristol','布里斯托','布大'], tz:'Europe/London', city:'布里斯托', color:'#a71e34',
-  src:'https://www.bristol.ac.uk/students/updates/academic-year-changes/',
-  periods:[
-    {name:'Teaching Block 1', oStart:'2026-09-14', oEnd:'2026-09-18', start:'2026-09-21', teachEnd:'2026-12-11',
-     breaks:[['2026-10-26','2026-10-30','Consolidation Week']],
-     examStart:'2026-12-14', examEnd:'2026-12-18',
-     extras:[['退课截止日','待官网公布'],['成绩公布','TB1 成绩约 2027.01（参考）']]},
-    {name:'Teaching Block 2', start:'2027-01-18', teachEnd:'2027-04-30',
-     breaks:[['2027-02-22','2027-02-26','Consolidation Week'],['2027-03-22','2027-04-09','Spring vacation']],
-     examStart:'2027-05-04', examEnd:'2027-05-21',
-     extras:[['退课截止日','待官网公布'],['成绩公布','TB2 成绩约 2027.06（参考）']]}
-  ]
-},
-{
-  code:'Southampton', zh:'南安普顿大学', alias:['southampton','南安普顿','南安'], tz:'Europe/London', city:'南安普顿', color:'#0072a3',
-  src:'https://www.southampton.ac.uk/about/term-dates',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-12',
-     breaks:[['2026-12-14','2027-01-03','Christmas vacation']], termEnd:'2027-01-03',
-     examStart:'2027-01-04', examEnd:'2027-01-16',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
-    {name:'Semester 2', start:'2027-01-25', teachEnd:'2027-04-30',
-     breaks:[['2027-03-22','2027-04-09','Easter vacation']],
-     examStart:'2027-05-10', examEnd:'2027-05-29',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.06（参考）']]}
-  ]
-},
-{
-  code:'KCL', zh:'伦敦国王学院', alias:['kcl','国王学院','伦敦国王学院'], tz:'Europe/London', city:'伦敦', color:'#8c1c3a',
-  src:'https://www.kcl.ac.uk/abroad/applying/dates-and-deadlines.aspx',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-18',
-     breaks:[['2026-11-02','2026-11-06','Reading Week'],['2026-12-21','2027-01-03','Christmas break']],
-     termEnd:'2027-01-03', examStart:'2027-01-08', examEnd:'2027-01-22',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.03（参考）']]},
-    {name:'Semester 2', start:'2027-01-22', teachEnd:'2027-03-25',
-     breaks:[['2027-03-01','2027-03-05','Reading Week'],['2027-03-26','2027-04-16','Easter break']],
-     termEnd:'2027-04-16', studyStart:'2027-04-19', studyEnd:'2027-05-07',
-     examStart:'2027-05-10', examEnd:'2027-06-04', provisional:true,
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.07（参考）']]}
-  ]
-},
-{
-  code:'Leeds', zh:'利兹大学', alias:['leeds','利兹'], tz:'Europe/London', city:'利兹', color:'#0f7b3f',
-  src:'https://www.leeds.ac.uk/term-dates/',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-27', start:'2026-09-28', teachEnd:'2026-12-11',
-     breaks:[['2026-12-14','2027-01-08','Christmas vacation']], termEnd:'2027-01-08',
-     examStart:'2027-01-11', examEnd:'2027-01-22',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
-    {name:'Semester 2', start:'2027-01-25', teachEnd:'2027-05-07',
-     breaks:[['2027-03-22','2027-04-16','Easter vacation']],
-     examStart:'2027-05-17', examEnd:'2027-06-04',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.07（参考）']]}
-  ]
-},
-{
-  code:'Imperial', zh:'帝国理工学院', alias:['imperial','帝国理工','ic'], tz:'Europe/London', city:'伦敦', color:'#003e74',
-  src:'https://www.imperial.ac.uk/admin-services/registry/term-dates/',
-  periods:[
-    {name:'Autumn Term', start:'2026-09-28', teachEnd:'2026-12-11',
-     examStart:'2027-01-04', examEnd:'2027-01-08',
-     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
-    {name:'Spring Term', start:'2027-01-11', teachEnd:'2027-03-19',
-     examStart:'2027-04-19', examEnd:'2027-04-30'},
-    {name:'Summer Term', start:'2027-04-26', teachEnd:'2027-06-25',
-     extras:[['成绩公布','最终成绩约 2027.06.30（参考）','2027-06-30']]}
-  ]
-},
-{
-  code:'Sheffield', zh:'谢菲尔德大学', alias:['sheffield','谢菲尔德','谢大'], tz:'Europe/London', city:'谢菲尔德', color:'#1d4e89',
-  src:'https://www.sheffield.ac.uk/about/dates',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-26', start:'2026-09-28', teachEnd:'2026-12-18',
-     breaks:[['2026-12-21','2027-01-15','Christmas vacation']], termEnd:'2027-01-15',
-     examStart:'2027-01-18', examEnd:'2027-02-06',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
-    {name:'Semester 2', start:'2027-02-08', teachEnd:'2027-05-21',
-     breaks:[['2027-03-22','2027-04-09','Easter vacation']],
-     examStart:'2027-05-24', examEnd:'2027-06-12',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.06（参考）']]}
-  ]
-},
-{
-  code:'Warwick', zh:'华威大学', alias:['warwick','华威'], tz:'Europe/London', city:'考文垂', color:'#4b2e83',
-  src:'https://warwick.ac.uk/termdates/',
-  periods:[
-    {name:'Autumn Term', oStart:'2026-09-28', oEnd:'2026-10-04', start:'2026-10-05', teachEnd:'2026-12-12',
-     breaks:[['2026-11-09','2026-11-13','Reading Week']],
-     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
-    {name:'Spring Term', start:'2027-01-11', teachEnd:'2027-03-20',
-     breaks:[['2027-02-15','2027-02-19','Reading Week']]},
-    {name:'Summer Term', start:'2027-04-26', teachEnd:'2027-07-03'}
-  ]
-},
-{
-  code:'Durham', zh:'杜伦大学', alias:['durham','杜伦'], tz:'Europe/London', city:'杜伦', color:'#68246d',
-  src:'https://www.dur.ac.uk/dates/',
-  periods:[
-    {name:'Michaelmas Term', oStart:'2026-09-28', oEnd:'2026-10-04', start:'2026-10-05', teachEnd:'2026-12-11',
-     breaks:[['2026-12-14','2027-01-10','Christmas vacation']], termEnd:'2027-01-10',
-     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
-    {name:'Epiphany Term', start:'2027-01-11', teachEnd:'2027-03-19',
-     breaks:[['2027-03-22','2027-04-25','Easter vacation']], termEnd:'2027-04-25'},
-    {name:'Easter Term', start:'2027-04-26', teachEnd:'2027-06-25'}
-  ]
-},
-{
-  code:'Nottingham', zh:'诺丁汉大学', alias:['nottingham','诺丁汉'], tz:'Europe/London', city:'诺丁汉', color:'#0b3d5c',
-  src:'https://www.nottingham.ac.uk/about/keydates/index.aspx',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-11',
-     breaks:[['2026-12-14','2027-01-08','Winter vacation']], termEnd:'2027-01-08',
-     examStart:'2027-01-11', examEnd:'2027-01-22',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
-    {name:'Semester 2', start:'2027-01-25', teachEnd:'2027-05-14',
-     breaks:[['2027-03-26','2027-04-23','Spring vacation']],
-     examStart:'2027-05-17', examEnd:'2027-06-04',
-     extras:[['退课截止日','待官网公布'],['成绩公布','约 2027.07.15（参考）','2027-07-15']]}
-  ]
-},
-{
-  code:'Liverpool', zh:'利物浦大学', alias:['liverpool','利物浦'], tz:'Europe/London', city:'利物浦', color:'#8a1c3c',
-  src:'https://www.liverpool.ac.uk/term-dates/',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-21', oEnd:'2026-09-27', start:'2026-09-28', teachEnd:'2026-12-18',
-     breaks:[['2026-12-21','2027-01-08','Winter break']], termEnd:'2027-01-08',
-     examStart:'2027-01-11', examEnd:'2027-01-29',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
-    {name:'Semester 2', start:'2027-02-01', teachEnd:'2027-05-14',
-     breaks:[['2027-03-22','2027-04-09','Easter break']],
-     examStart:'2027-05-17', examEnd:'2027-06-04',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.06（参考）']]}
-  ]
-},
-{
-  code:'Newcastle', zh:'纽卡斯尔大学', alias:['newcastle','纽卡斯尔'], tz:'Europe/London', city:'纽卡斯尔', color:'#12406b',
-  src:'https://www.ncl.ac.uk/regulations/term-dates/',
-  periods:[
-    {name:'Semester 1', oStart:'2026-09-14', oEnd:'2026-09-18', start:'2026-09-21', teachEnd:'2026-12-11',
-     breaks:[['2026-12-14','2027-01-08','Winter break']], termEnd:'2027-01-08',
-     examStart:'2027-01-11', examEnd:'2027-01-23',
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 1 成绩约 2027.02（参考）']]},
-    {name:'Semester 2', start:'2027-01-25', teachEnd:'2027-06-04',
-     breaks:[['2027-03-29','2027-04-16','Easter break']],
-     extras:[['退课截止日','待官网公布'],['成绩公布','Semester 2 成绩约 2027.06（参考）']]}
-  ]
-},
-{
-  code:'Cambridge', zh:'剑桥大学', alias:['cambridge','剑桥'], tz:'Europe/London', city:'剑桥', color:'#4b8fa8',
-  src:'https://www.cam.ac.uk/about-the-university/term-dates-and-calendars',
-  periods:[
-    {name:'Michaelmas Term', start:'2026-10-06', teachEnd:'2026-11-27',
-     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
-    {name:'Lent Term', start:'2027-01-19', teachEnd:'2027-03-12'},
-    {name:'Easter Term', start:'2027-04-27', teachEnd:'2027-06-18'}
-  ]
-},
-{
-  code:'LSE', zh:'伦敦政治经济学院', alias:['lse','伦敦政经','政经'], tz:'Europe/London', city:'伦敦', color:'#7a1f2b',
-  src:'https://info.lse.ac.uk/current-students/term-dates',
-  periods:[
-    {name:'Autumn Term', oStart:'2026-09-21', oEnd:'2026-09-25', start:'2026-09-28', teachEnd:'2026-12-11',
-     breaks:[['2026-11-02','2026-11-06','Reading Week'],['2026-12-14','2027-01-03','Winter break']],
-     termEnd:'2027-01-03', examStart:'2027-01-04', examEnd:'2027-01-10',
-     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
-    {name:'Winter Term', start:'2027-01-11', teachEnd:'2027-03-25',
-     breaks:[['2027-02-15','2027-02-19','Reading Week']]},
-    {name:'Spring Term', start:'2027-04-26', teachEnd:'2027-06-11'}
-  ]
-},
-{
-  code:'Exeter', zh:'埃克塞特大学', alias:['exeter','埃克塞特'], tz:'Europe/London', city:'埃克塞特', color:'#1f6f5c',
-  src:'https://exeter.ac.uk/students/administration/termdates',
-  periods:[
-    {name:'Autumn Term', oStart:'2026-09-14', oEnd:'2026-09-20', start:'2026-09-21', teachEnd:'2026-12-11',
-     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
-    {name:'Spring Term', start:'2027-01-04', teachEnd:'2027-03-26'},
-    {name:'Summer Term', start:'2027-04-26', teachEnd:'2027-06-11',
-     extras:[['成绩公布','约 2027.07（参考）']]}
-  ]
-}
-];
+const UK_SCHOOLS = [];
 
 /* ============================================================
    3c. 新西兰 8 所大学校历数据（2026 学年；全境时区 Pacific/Auckland）
    ============================================================ */
-const NZ_SCHOOLS = [];
+const NZ_SCHOOLS = [
+{
+  code:'Auckland', zh:'奥克兰大学', alias:['auckland','奥大','奥克兰'], tz:'Pacific/Auckland', city:'奥克兰', color:'#123a6b',
+  src:'https://www.auckland.ac.nz/en/students/academic-information/important-dates.html',
+  periods:[
+    {name:'Summer School', start:'2026-01-05', teachEnd:'2026-02-13', studyStart:'2026-02-14', studyEnd:'2026-02-15',
+     examStart:'2026-02-16', examEnd:'2026-02-18'},
+    {name:'Semester 1', oStart:'2026-02-23', oEnd:'2026-02-27', start:'2026-03-02', teachEnd:'2026-06-05',
+     breaks:[['2026-04-03','2026-04-17','Mid-semester break']],
+     studyStart:'2026-06-06', studyEnd:'2026-06-10', examStart:'2026-06-11', examEnd:'2026-06-29',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Semester 2', start:'2026-07-20', teachEnd:'2026-10-23',
+     breaks:[['2026-08-31','2026-09-11','Mid-semester break']],
+     studyStart:'2026-10-24', studyEnd:'2026-10-28', examStart:'2026-10-29', examEnd:'2026-11-16',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Summer School', start:'2027-01-06', teachEnd:'2027-02-12', studyStart:'2027-02-13', studyEnd:'2027-02-14', examStart:'2027-02-15', examEnd:'2027-02-17', provisional:true},
+    {name:'Semester 1', oStart:'2027-02-22', oEnd:'2027-02-26', start:'2027-03-01', teachEnd:'2027-06-04',
+     breaks:[['2027-04-02','2027-04-16','Mid-semester break']],
+     studyStart:'2027-06-05', studyEnd:'2027-06-09', examStart:'2027-06-10', examEnd:'2027-06-28', provisional:true},
+    {name:'Semester 2', start:'2027-07-19', teachEnd:'2027-10-22',
+     breaks:[['2027-08-30','2027-09-10','Mid-semester break']],
+     studyStart:'2027-10-23', studyEnd:'2027-10-27', examStart:'2027-10-28', examEnd:'2027-11-15', provisional:true}
+  ]
+},
+{
+  code:'Otago', zh:'奥塔哥大学', alias:['otago','奥塔哥','但尼丁','达尼丁'], tz:'Pacific/Auckland', city:'但尼丁', color:'#1f5fa8',
+  src:'https://www.otago.ac.nz/news/events/keydates',
+  periods:[
+    {name:'Summer School', start:'2026-01-05', teachEnd:'2026-02-13', examStart:'2026-02-14', examEnd:'2026-02-19'},
+    {name:'Semester 1', oStart:'2026-02-16', oEnd:'2026-02-20', start:'2026-02-23', teachEnd:'2026-05-29',
+     breaks:[['2026-04-03','2026-04-12','Mid-semester break']],
+     studyStart:'2026-05-30', studyEnd:'2026-06-02', examStart:'2026-06-03', examEnd:'2026-06-17',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Semester 2', start:'2026-07-13', teachEnd:'2026-10-16',
+     breaks:[['2026-08-29','2026-09-06','Mid-semester break']],
+     studyStart:'2026-10-17', studyEnd:'2026-10-18', examStart:'2026-10-19', examEnd:'2026-11-07',
+     extras:[['退课截止日','09.20','2026-09-20'],['成绩公布','待官网公布']]},
+    {name:'Pre-Christmas Summer School', abbr:'Summer School（11月）', start:'2026-11-09', teachEnd:'2026-12-11',
+     examStart:'2026-12-12', examEnd:'2026-12-12'},
+    {name:'Summer School', start:'2027-01-11', teachEnd:'2027-02-19', examStart:'2027-02-20', examEnd:'2027-02-25'},
+    {name:'Semester 1', start:'2027-03-01', teachEnd:'2027-06-04',
+     breaks:[['2027-03-26','2027-04-11','Mid-semester break']],
+     studyStart:'2027-06-05', studyEnd:'2027-06-08', examStart:'2027-06-09', examEnd:'2027-06-23'},
+    {name:'Semester 2', start:'2027-07-12', teachEnd:'2027-10-15',
+     breaks:[['2027-08-28','2027-09-12','Mid-semester break']],
+     studyStart:'2027-10-16', studyEnd:'2027-10-19', examStart:'2027-10-20', examEnd:'2027-11-13'}
+  ]
+},
+{
+  code:'Massey', zh:'梅西大学', alias:['massey','梅西'], tz:'Pacific/Auckland', city:'北帕默斯顿', color:'#0b6e4f',
+  src:'https://www.massey.ac.nz/study/key-dates-for-semesters-exam-periods-other-events/',
+  periods:[
+    {name:'Semester 1', oStart:'2026-02-16', oEnd:'2026-02-20', start:'2026-02-23', teachEnd:'2026-05-29',
+     breaks:[['2026-04-03','2026-04-17','Mid-semester study period']],
+     studyStart:'2026-05-30', studyEnd:'2026-06-07', examStart:'2026-06-08', examEnd:'2026-06-19',
+     extras:[['退课截止日','待官网公布'],['成绩公布','07.03','2026-07-03']]},
+    {name:'Semester 2', oStart:'2026-07-06', oEnd:'2026-07-10', start:'2026-07-13', teachEnd:'2026-10-16',
+     breaks:[['2026-08-24','2026-09-04','Mid-semester study period']],
+     studyStart:'2026-10-17', studyEnd:'2026-10-26', examStart:'2026-10-27', examEnd:'2026-11-09',
+     extras:[['退课截止日','待官网公布'],['成绩公布','12.01','2026-12-01']]},
+    {name:'Summer School', start:'2026-11-16', teachEnd:'2027-02-02',
+     breaks:[['2026-12-24','2027-01-04','Mid-semester break']],
+     studyStart:'2027-02-03', studyEnd:'2027-02-07', examStart:'2027-02-08', examEnd:'2027-02-12',
+     extras:[['退课截止日','待官网公布'],['成绩公布','02.25','2027-02-25']]},
+    {name:'Semester 1', oStart:'2027-02-15', oEnd:'2027-02-19', start:'2027-02-22', teachEnd:'2027-05-28',
+     breaks:[['2027-03-26','2027-04-09','Mid-semester study period']],
+     studyStart:'2027-05-29', studyEnd:'2027-06-04', examStart:'2027-06-05', examEnd:'2027-06-19'},
+    {name:'Semester 2', oStart:'2027-07-05', oEnd:'2027-07-09', start:'2027-07-12', teachEnd:'2027-10-15',
+     breaks:[['2027-08-23','2027-09-03','Mid-semester study period']],
+     studyStart:'2027-10-16', studyEnd:'2027-10-22', examStart:'2027-10-23', examEnd:'2027-11-08'}
+  ]
+},
+{
+  code:'Waikato', zh:'怀卡托大学', alias:['waikato','怀卡托'], tz:'Pacific/Auckland', city:'汉密尔顿', color:'#b91c1c',
+  src:'https://www.waikato.ac.nz/about/calendar/important-dates/teaching-and-assessment-periods/',
+  periods:[
+    {name:'Trimester C', abbr:'Trimester C学期', start:'2026-01-05', teachEnd:'2026-02-05',
+     studyStart:'2026-02-06', studyEnd:'2026-02-08', examStart:'2026-02-09', examEnd:'2026-02-13'},
+    {name:'Trimester A', abbr:'Trimester A学期', oStart:'2026-02-23', oEnd:'2026-02-27', start:'2026-03-02', teachEnd:'2026-06-05',
+     breaks:[['2026-04-08','2026-04-17','Mid-trimester break']],
+     studyStart:'2026-06-06', studyEnd:'2026-06-14', examStart:'2026-06-15', examEnd:'2026-06-26',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Trimester B', abbr:'Trimester B学期', oStart:'2026-07-06', oEnd:'2026-07-09', start:'2026-07-13', teachEnd:'2026-10-16',
+     breaks:[['2026-08-24','2026-09-04','Mid-trimester break']],
+     studyStart:'2026-10-17', studyEnd:'2026-10-26', examStart:'2026-10-27', examEnd:'2026-11-06',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Trimester C', abbr:'Trimester C学期', start:'2026-11-16', teachEnd:'2027-02-05',
+     breaks:[['2026-12-21','2027-01-04','Christmas break']],
+     studyStart:'2027-02-06', studyEnd:'2027-02-08', examStart:'2027-02-09', examEnd:'2027-02-13'},
+    {name:'Trimester A', abbr:'Trimester A学期', oStart:'2027-02-22', oEnd:'2027-02-26', start:'2027-03-01', teachEnd:'2027-06-04',
+     breaks:[['2027-04-19','2027-04-30','Mid-trimester break']],
+     studyStart:'2027-06-05', studyEnd:'2027-06-13', examStart:'2027-06-14', examEnd:'2027-06-21'},
+    {name:'Trimester B', abbr:'Trimester B学期', oStart:'2027-07-05', oEnd:'2027-07-09', start:'2027-07-12', teachEnd:'2027-10-15',
+     breaks:[['2027-08-23','2027-09-03','Mid-trimester break']],
+     studyStart:'2027-10-16', studyEnd:'2027-10-25', examStart:'2027-10-26', examEnd:'2027-11-05'}
+  ]
+},
+{
+  code:'VUW', zh:'惠灵顿维多利亚大学', alias:['vuw','victoria','wellington','惠灵顿','维多利亚'], tz:'Pacific/Auckland', city:'惠灵顿', color:'#0e7490',
+  src:'https://www.vuw.ac.nz/home/studying/dates.html',
+  periods:[
+    {name:'Trimester 1', oStart:'2026-02-23', oEnd:'2026-02-27', start:'2026-03-02', teachEnd:'2026-05-29',
+     breaks:[['2026-04-06','2026-04-19','Mid-trimester break']],
+     studyStart:'2026-05-30', studyEnd:'2026-06-07', examStart:'2026-06-08', examEnd:'2026-06-20',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Trimester 2', oStart:'2026-07-06', oEnd:'2026-07-10', start:'2026-07-13', teachEnd:'2026-10-09',
+     breaks:[['2026-08-17','2026-08-30','Mid-trimester break']],
+     studyStart:'2026-10-10', studyEnd:'2026-10-15', examStart:'2026-10-16', examEnd:'2026-11-07',
+     extras:[['退课截止日','待官网公布'],['成绩公布','11.20','2026-11-20']]},
+    {name:'Trimester 3', oStart:'2026-11-09', oEnd:'2026-11-13', start:'2026-11-23', teachEnd:'2027-02-05',
+     breaks:[['2026-12-21','2027-01-04','Summer break']], provisional:true},
+    {name:'Trimester 1', oStart:'2027-02-22', oEnd:'2027-02-26', start:'2027-03-01', teachEnd:'2027-05-28',
+     breaks:[['2027-03-26','2027-04-09','Mid-trimester break']],
+     studyStart:'2027-05-29', studyEnd:'2027-06-06', examStart:'2027-06-07', examEnd:'2027-06-19', provisional:true},
+    {name:'Trimester 2', oStart:'2027-07-05', oEnd:'2027-07-09', start:'2027-07-12', teachEnd:'2027-10-08',
+     breaks:[['2027-08-16','2027-08-29','Mid-trimester break']],
+     studyStart:'2027-10-09', studyEnd:'2027-10-14', examStart:'2027-10-15', examEnd:'2027-11-06', provisional:true}
+  ]
+},
+{
+  code:'Canterbury', zh:'坎特伯雷大学', alias:['canterbury','uc','坎特伯雷','基督城'], tz:'Pacific/Auckland', city:'基督城', color:'#a16207',
+  src:'https://canterbury.ac.nz/study/study-support-info/dates-and-timetables/key-university-dates',
+  periods:[
+    {name:'Semester 1', oStart:'2026-02-09', oEnd:'2026-02-13', start:'2026-02-16', teachEnd:'2026-05-29',
+     breaks:[['2026-03-30','2026-04-17','Mid-semester break']],
+     studyStart:'2026-05-30', studyEnd:'2026-06-07', examStart:'2026-06-08', examEnd:'2026-06-20',
+     extras:[['退课截止日','05.10','2026-05-10'],['成绩公布','07.06','2026-07-06']]},
+    {name:'Semester 2', start:'2026-07-13', teachEnd:'2026-10-16',
+     breaks:[['2026-08-24','2026-09-04','Mid-semester break']],
+     studyStart:'2026-10-17', studyEnd:'2026-10-26', examStart:'2026-10-27', examEnd:'2026-11-07',
+     extras:[['退课截止日','09.27','2026-09-27'],['成绩公布','11.30','2026-11-30']]},
+    {name:'Summer School', start:'2026-11-09', teachEnd:'2027-02-12',
+     breaks:[['2026-12-24','2027-01-05','Summer break']], provisional:true},
+    {name:'Semester 1', oStart:'2027-02-15', oEnd:'2027-02-19', start:'2027-02-22', teachEnd:'2027-06-04',
+     breaks:[['2027-03-26','2027-04-16','Mid-semester break']],
+     studyStart:'2027-06-05', studyEnd:'2027-06-06', examStart:'2027-06-07', examEnd:'2027-06-19', provisional:true},
+    {name:'Semester 2', start:'2027-07-12', teachEnd:'2027-10-15',
+     breaks:[['2027-08-21','2027-09-05','Mid-semester break']],
+     studyStart:'2027-10-16', studyEnd:'2027-10-25', examStart:'2027-10-26', examEnd:'2027-11-06', provisional:true}
+  ]
+},
+{
+  code:'Lincoln', zh:'林肯大学', alias:['lincoln','林肯'], tz:'Pacific/Auckland', city:'林肯镇', color:'#166534',
+  src:'https://www.lincoln.ac.nz/study/key-dates/2026-academic-key-dates/',
+  periods:[
+    {name:'Summer School', abbr:'Summer School（1月）', start:'2026-01-05', teachEnd:'2026-02-05',
+     studyStart:'2026-02-06', studyEnd:'2026-02-08', examStart:'2026-02-09', examEnd:'2026-02-10'},
+    {name:'Semester 1', oStart:'2026-02-09', oEnd:'2026-02-13', start:'2026-02-16', teachEnd:'2026-05-29',
+     breaks:[['2026-03-30','2026-04-17','Mid-term break']],
+     studyStart:'2026-05-30', studyEnd:'2026-06-07', examStart:'2026-06-08', examEnd:'2026-06-19',
+     extras:[['退课截止日','03.06','2026-03-06'],['成绩公布','07.08','2026-07-08']]},
+    {name:'Semester 2', oStart:'2026-07-07', oEnd:'2026-07-12', start:'2026-07-13', teachEnd:'2026-10-16',
+     breaks:[['2026-08-24','2026-09-04','Mid-term break']],
+     studyStart:'2026-10-17', studyEnd:'2026-10-26', examStart:'2026-10-27', examEnd:'2026-11-06',
+     extras:[['退课截止日','待官网公布'],['成绩公布','11.20','2026-11-20']]},
+    {name:'Summer School', abbr:'Summer School（11月）', start:'2026-11-12', teachEnd:'2026-12-11',
+     studyStart:'2026-12-12', studyEnd:'2026-12-13', examStart:'2026-12-14', examEnd:'2026-12-15', provisional:true},
+    {name:'Semester 1', oStart:'2027-02-08', oEnd:'2027-02-12', start:'2027-02-15', teachEnd:'2027-05-28',
+     breaks:[['2027-03-29','2027-04-16','Mid-term break']],
+     studyStart:'2027-05-29', studyEnd:'2027-06-06', examStart:'2027-06-07', examEnd:'2027-06-18', provisional:true},
+    {name:'Semester 2', oStart:'2027-07-06', oEnd:'2027-07-11', start:'2027-07-12', teachEnd:'2027-10-15',
+     breaks:[['2027-08-23','2027-09-03','Mid-term break']],
+     studyStart:'2027-10-16', studyEnd:'2027-10-25', examStart:'2027-10-26', examEnd:'2027-11-05', provisional:true}
+  ]
+},
+{
+  code:'AUT', zh:'奥克兰理工大学', alias:['aut','奥克兰理工','奥理工'], tz:'Pacific/Auckland', city:'奥克兰', color:'#7e22ce',
+  src:'https://www.aut.ac.nz/study/semester-dates',
+  periods:[
+    {name:'Semester 1', oStart:'2026-02-16', oEnd:'2026-02-20', start:'2026-02-23', teachEnd:'2026-05-29',
+     breaks:[['2026-04-06','2026-04-17','Mid-semester break']],
+     studyStart:'2026-05-30', studyEnd:'2026-06-19',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Semester 2', oStart:'2026-07-06', oEnd:'2026-07-10', start:'2026-07-13', teachEnd:'2026-10-16',
+     breaks:[['2026-08-24','2026-09-04','Mid-semester break']],
+     studyStart:'2026-10-17', studyEnd:'2026-11-06',
+     extras:[['退课截止日','待官网公布'],['成绩公布','待官网公布']]},
+    {name:'Summer School', start:'2026-11-23', teachEnd:'2027-01-29',
+     breaks:[['2026-12-25','2027-01-04','Mid-semester break']],
+     studyStart:'2027-01-30', studyEnd:'2027-02-05'},
+    {name:'Semester 1', oStart:'2027-02-15', oEnd:'2027-02-19', start:'2027-02-22', teachEnd:'2027-05-28',
+     breaks:[['2027-04-05','2027-04-16','Mid-semester break']],
+     studyStart:'2027-05-29', studyEnd:'2027-06-18'},
+    {name:'Semester 2', oStart:'2027-07-05', oEnd:'2027-07-09', start:'2027-07-12', teachEnd:'2027-10-15',
+     breaks:[['2027-08-23','2027-09-03','Mid-semester break']],
+     studyStart:'2027-10-16', studyEnd:'2027-11-05'}
+  ]
+}
+];
 
 
 /* ============================================================
@@ -738,7 +657,7 @@ const SITES = {
     schools: SG_SCHOOLS
   }
 };
-let SITE = SITES.uk;
+let SITE = SITES.nz;
 
 /* ============================================================
    4. 教学周计算引擎

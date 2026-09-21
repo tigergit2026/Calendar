@@ -188,14 +188,14 @@ footer a:hover{color:var(--accent)}
 /* ---------- 第 1 层：入口页 ---------- */
 body.on-home{display:flex;flex-direction:column;justify-content:center;min-height:100vh;background:
   radial-gradient(1200px 520px at 50% -10%, #eaf1ff 0%, rgba(234,241,255,0) 62%), var(--bg)}
-.home{width:100%;max-width:940px;margin:0 auto;padding:46px 24px 52px;text-align:center}
+.home{width:100%;max-width:980px;margin:0 auto;padding:46px 24px 52px;text-align:center}
 .home-badge{
   display:inline-block;font-size:11.5px;font-weight:640;letter-spacing:1.4px;color:var(--accent);
   background:var(--accent-soft);border:1px solid #d8e5ff;border-radius:999px;padding:4px 14px;
 }
 .home-title{margin:20px 0 0;font-size:44px;font-weight:700;letter-spacing:3px;line-height:1.2}
 .home-sub{margin:14px 0 0;font-size:13.5px;color:var(--muted);line-height:1.8}
-.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:42px;text-align:left}
+.home-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:42px;text-align:left}
 .home-card{
   position:relative;overflow:hidden;font:inherit;text-align:left;cursor:pointer;
   background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px 22px;
@@ -221,8 +221,9 @@ body.on-home{display:flex;flex-direction:column;justify-content:center;min-heigh
 #footNotes p{margin:0 0 6px}
 #footNotes p:last-child{margin-bottom:0}
 
-@media (max-width:760px){
-  .home{padding:34px 18px 44px}
+/* 四张卡片：宽屏 2×2，窄屏单列 */
+@media (max-width:860px){
+  .home{padding:34px 18px 44px;max-width:100%}
   .home-title{font-size:31px;letter-spacing:1px}
   .home-grid{grid-template-columns:1fr;gap:16px;margin-top:30px}
   .hc-title{font-size:20px}
@@ -313,7 +314,7 @@ function tzOffsetMinutes(tz, when){
   const asUTC = Date.UTC(+g('year'), +g('month')-1, +g('day'), +g('hour'), +g('minute'), +g('second'));
   return Math.round((asUTC - Math.floor(when.getTime()/1000)*1000)/60000);
 }
-/* 澳洲 + 英国全部时区缩写 */
+/* 澳洲 + 英国 + 新西兰 + 新加坡全部时区缩写 */
 const TZABBR = {
   'Australia/Sydney':{600:'AEST',660:'AEDT'},
   'Australia/Melbourne':{600:'AEST',660:'AEDT'},
@@ -324,6 +325,8 @@ const TZABBR = {
   'Australia/Darwin':{570:'ACST'},
   'Australia/Perth':{480:'AWST',540:'AWDT'},
   'Europe/London':{0:'GMT',60:'BST'},
+  'Pacific/Auckland':{720:'NZST',780:'NZDT'},
+  'Asia/Singapore':{480:'SGT'},
   'Asia/Shanghai':{480:'CST'}
 };
 function tzAbbr(tz, when){
@@ -801,7 +804,21 @@ const AU_SCHOOLS = [
 const UK_SCHOOLS = [];
 
 /* ============================================================
-   3b. 站点配置（第 2 层的两个校历站）
+   3c. 新西兰 8 所大学校历数据（2026 学年；全境时区 Pacific/Auckland）
+   ============================================================ */
+const NZ_SCHOOLS = [];
+
+
+/* ============================================================
+   3d. 新加坡 3 所院校校历数据（2026 学年；全境时区 Asia/Singapore）
+   学制说明：SIM = 6 个学习期（Study Period）；Curtin SG = 三学期
+   12 教学周 + 1 学习周 + 2 考试周；JCU SG = 三学期 10 教学周 +
+   期中 Study Week + 复习 Study Week。
+   ============================================================ */
+const SG_SCHOOLS = [];
+
+/* ============================================================
+   3b. 站点配置（第 2 层的四个校历站）
    ============================================================ */
 const SITES = {
   au: {
@@ -850,6 +867,54 @@ const SITES = {
     ],
     links:[["https://www.ucl.ac.uk/students/exams-and-assessments/key-dates", "UCL"], ["https://www.manchester.ac.uk/about/key-dates/", "Manchester"], ["https://registryservices.ed.ac.uk/student-systems/key-dates", "Edinburgh"], ["https://www.gla.ac.uk/myglasgow/apg/sessiondates/session2026-27/", "Glasgow"], ["https://intranet.birmingham.ac.uk/student/dates/index.aspx", "Birmingham"], ["https://www.arts.ac.uk/students/term-dates", "UAL"], ["https://www.bristol.ac.uk/students/updates/academic-year-changes/", "Bristol"], ["https://www.southampton.ac.uk/about/term-dates", "Southampton"], ["https://www.kcl.ac.uk/abroad/applying/dates-and-deadlines.aspx", "KCL"], ["https://www.leeds.ac.uk/term-dates/", "Leeds"], ["https://www.imperial.ac.uk/admin-services/registry/term-dates/", "Imperial"], ["https://www.sheffield.ac.uk/about/dates", "Sheffield"], ["https://warwick.ac.uk/termdates/", "Warwick"], ["https://www.dur.ac.uk/dates/", "Durham"], ["https://www.nottingham.ac.uk/about/keydates/index.aspx", "Nottingham"], ["https://www.liverpool.ac.uk/term-dates/", "Liverpool"], ["https://www.ncl.ac.uk/regulations/term-dates/", "Newcastle"], ["https://www.cam.ac.uk/about-the-university/term-dates-and-calendars", "Cambridge"], ["https://info.lse.ac.uk/current-students/term-dates", "LSE"], ["https://exeter.ac.uk/students/administration/termdates", "Exeter"]],
     schools: UK_SCHOOLS
+  },
+  nz: {
+    key:'nz',
+    name:'新西兰大学教学周日历查询',
+    country:'新西兰',
+    countryAlias:['新西兰','纽西兰','new zealand','nz'],
+    accent:'#0f766e',
+    lsKey:'nzweek.focus.v1',
+    stamp:'数据源：各校官网 2026 官方校历',
+    placeholder:'如：奥大、奥塔哥、坎特伯雷、AUT…　回车确认',
+    termSuffixAlways:false,
+    summerAlias:false,
+    yearEndFallback:true,
+    orientationLabel:'Orientation Week',
+    studyWord: () => 'Study break / Study week',
+    examNote: d => `Examination period · 距考试结束 ${d} 天`,
+    emptyMsg:'当前没有显示任何大学。',
+    afterNoNext:'本学年校历已结束 · 下一学年（2028）校历待官网公布',
+    footNotes:[
+      '教学周依据各校<b>官方校历</b>的「教学起始日 + 期中假 / 学习周 + 教学结束日 + 复习周 + 考试周」计算；休息周（期中假、Study break、圣诞 / 夏季假期等）<b>不计入教学周</b>，也不占教学周编号。新西兰是「2 月开学、11 月结束」的南半球学年制：奥克兰、奥塔哥、梅西、坎特伯雷、林肯、AUT 用两学期（Semester）制，怀卡托与惠灵顿维多利亚用三段学期（Trimester）制，夏季学期（Summer School）跨年。带「参考」标记的学期表示官网尚未公布完整日期，起止按官方已公布的开学与结课日推算。',
+      '新西兰全境同属 Pacific/Auckland 时区，夏令时（NZDT）比北京时间早 5 小时，冬令时（NZST）早 4 小时，页面徽章按当天实际时差显示。退课截止日 / 成绩公布日以各校官网公布为准，未公布者标注「待官网公布」。'
+    ],
+    links:[["https://www.auckland.ac.nz/en/students/academic-information/important-dates.html", "Auckland"], ["https://www.otago.ac.nz/news/events/keydates", "Otago"], ["https://www.massey.ac.nz/study/key-dates-for-semesters-exam-periods-other-events/", "Massey"], ["https://www.waikato.ac.nz/about/calendar/important-dates/teaching-and-assessment-periods/", "Waikato"], ["https://www.vuw.ac.nz/home/studying/dates.html", "VUW"], ["https://canterbury.ac.nz/study/study-support-info/dates-and-timetables/key-university-dates", "Canterbury"], ["https://www.lincoln.ac.nz/study/key-dates/2026-academic-key-dates/", "Lincoln"], ["https://www.aut.ac.nz/study/semester-dates", "AUT"]],
+    schools: NZ_SCHOOLS
+  },
+  sg: {
+    key:'sg',
+    name:'新加坡大学教学周日历查询',
+    country:'新加坡',
+    countryAlias:['新加坡','狮城','singapore','sg'],
+    accent:'#c8102e',
+    lsKey:'sgweek.focus.v1',
+    stamp:'数据源：各校官网 2026 官方校历',
+    placeholder:'如：SIM、科廷、JCU…　回车确认',
+    termSuffixAlways:false,
+    summerAlias:false,
+    yearEndFallback:true,
+    orientationLabel:'Orientation Week',
+    studyWord: () => 'Study Week / 学习周',
+    examNote: d => `Examination period · 距考试结束 ${d} 天`,
+    emptyMsg:'当前没有显示任何院校。',
+    afterNoNext:'本学年校历已结束 · 下一学年校历待官网公布',
+    footNotes:[
+      '教学周依据各校<b>官方校历</b>计算；休息周（Study Week / 学习周、农历新年假期等）<b>不计入教学周</b>，也不占教学周编号。三校学制差异较大：<b>新加坡管理学院（SIM）</b>采用「学习期（Study Period）」制，2026 年设 6 个学习期、每期约 6 教学周，其合作大学课程（RMIT、伦敦大学、伍伦贡大学、莫纳什学院等）另有各自的学期安排，以学院发放的 programme academic calendar 为准；<b>科廷新加坡（Curtin Singapore）</b>为 12 教学周 + 1 学习周 + 2 考试周的三学期制（Trimester 1A / 2A / 3A）；<b>詹姆斯库克大学新加坡校区（JCU Singapore）</b>为 10 教学周 + 期中 Study Week + 复习 Study Week 的三学期制（Trimester 1S / 2 / 3）。带「参考」标记的学期表示官网尚未公布完整日期，起止按官方已公布的开学与结课日推算。',
+      '新加坡全境同属 Asia/Singapore 时区（UTC+8），<b>与北京时间完全相同</b>、全年无夏令时，页面时差徽章统一显示「与北京时间同时」。退课截止日 / 成绩公布日以各校官网公布为准，尚未发布者标注「待官网公布」；JCU 的 Census date 为学费结算分界日，「退课截止日（无学术处罚）」为不计学术处罚的最后退课日。'
+    ],
+    links:[["https://www.sim.edu.sg/degrees-diplomas/parent-resource-hub/academic-calendar","SIM"],["https://curtin.edu.sg/current-students/academic-calendar/","Curtin SG"],["https://www.jcu.edu.sg/current-students/calendars-and-timetables","JCU SG"]],
+    schools: SG_SCHOOLS
   }
 };
 let SITE = SITES.au;
@@ -883,7 +948,15 @@ function brLabel(label){
     'Non-teaching period':'非教学周',
     'Student vacation':'学生假期','Intra-trimester break':'学期内假期',
     'Tuition-free week':'免课周','Study break':'无课周','Study vacation':'无课周',
-    'Lecture recess':'停课周','Class free week':'无课周'
+    'Lecture recess':'停课周','Class free week':'无课周',
+    /* 新西兰 */
+    'Mid-trimester break':'期中假期','Mid-semester study period':'期中假期','Mid-term break':'期中假期',
+    'Inter-semester break':'学期间假期','Mid-year break':'年中假期','Semester break':'学期假期',
+    'Teaching recess':'教学假期','Summer break':'暑假','January break':'一月假期',
+    /* 新加坡 */
+    'Lunar New Year break':'农历新年假期','Chinese New Year break':'农历新年假期',
+    'Study Week':'学习周（无课）','Study week':'学习周（无课）',
+    'Tuition free week':'免课周','Study free week':'无课周','Study review week':'复习周'
   };
   return map[label] || label;
 }
@@ -1067,7 +1140,8 @@ function termShort(name){
     .replace(/\s*Session\s*/g,'')
     .trim();
 }
-function termTitle(name){
+function termTitle(name, p){
+  if(p && p.abbr) return p.abbr;            // 个别学校（如怀卡托 Trimester A/B/C）用自定义简称
   const s = termShort(name);
   return (SITE.termSuffixAlways || /^(S|T)\d/.test(s)) ? s+'学期' : s;
 }
@@ -1100,7 +1174,7 @@ function summaryTable(s, p, today){
     rows.push({g:ex[0], w:'', d:(ex[1]||'')+cnt, cls:'r-extra', cur:false});
   }
 
-  let html = `<div class="sc-sum"><div class="sc-sum-h">${s.code} ${p.start.slice(0,4)}年 ${termTitle(p.name)}</div><table>`;
+  let html = `<div class="sc-sum"><div class="sc-sum-h">${s.code} ${p.start.slice(0,4)}年 ${termTitle(p.name, p)}</div><table>`;
   rows.forEach((r,idx)=>{
     const startRun = idx===0 || rows[idx-1].g!==r.g;
     let span=1;
@@ -1280,7 +1354,7 @@ document.getElementById('btnSearch').onclick = ()=>{
 document.getElementById('btnClearSearch').onclick = clearFocus;
 
 /* ============================================================
-   6. 视图启动（部署版：澳洲 / 英国各为一个独立页面，用原生链接导航）
+   6. 视图启动（部署版：澳洲 / 英国 / 新西兰 / 新加坡各为一个独立页面，用原生链接导航）
    ============================================================ */
 function applySite(key){
   SITE = SITES[key];
